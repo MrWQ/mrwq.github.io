@@ -6,19 +6,42 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mrwq.github.io">
-  <title>Archives: 2022 | </title>
+  <title>Windows日志总结 | </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="description">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="https://mrwq.github.io/archives/2022/index.html">
+  <meta name="description" content="本文首发于奇安信攻防社区：https:&#x2F;&#x2F;forum.butian.net&#x2F;share&#x2F;355 windows日志总结开启审核策略运行  secpol.msc  可以打开本地安全策略，依次点开本地策略-审核策略。可以看到windows默认情况是没有开启审核策略的，不开启策略的话，windows就不会记录某些事件，比如登录事件，进程创建事件等等。 我们可以挨个手动修改审核策略的属性，将审核操作选上成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows日志总结">
+<meta property="og:url" content="https://mrwq.github.io/windows%E6%97%A5%E5%BF%97%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="description">
+<meta property="og:description" content="本文首发于奇安信攻防社区：https:&#x2F;&#x2F;forum.butian.net&#x2F;share&#x2F;355 windows日志总结开启审核策略运行  secpol.msc  可以打开本地安全策略，依次点开本地策略-审核策略。可以看到windows默认情况是没有开启审核策略的，不开启策略的话，windows就不会记录某些事件，比如登录事件，进程创建事件等等。 我们可以挨个手动修改审核策略的属性，将审核操作选上成">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/72293d12dad7442b96d0014649e448bb.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/62fd62aaaba64ce68ba69fce1d586b0b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8c1aafb7ad3e44999ba9890b8f675930.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/90fd556abd4e4a9ea142e4e9baa2223f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2211a3abeb164d72a6959f3a6131b166.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/89de1d58d922496bb2f2eefe7adb34e3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5d736ea3cf9c42c8bf5ea34116127525.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c9b1a519674e4c3d87ee62575073d10b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9cf08c0afe1f464a88a0b1b571a1adf6.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ab75f4eeb57140a4b7c0bcd1762f623e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/949544a0889d4c3aabbb34ccb56c9170.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9d3e4079dd284ebaa7bd573e16a32456.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/200e96eff6db4ddf876b7b70ebb85ae2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3f811affe3d34ab49a1089d519cf2ce9.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4e660fc6d70048d5af92973769f8e1b3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2c45ce7976ac4b34a15db11a301ceb35.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b5703343d6714528baacacebc1aa3ea1.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ce908d304f5145ffba8e8194ce36e5b8.png">
+<meta property="article:published_time" content="2021-08-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-20T08:36:11.191Z">
 <meta property="article:author" content="ordar">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="日志">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/72293d12dad7442b96d0014649e448bb.png">
   
   
     <link rel="icon" href="/img/head.jpg">
@@ -235,139 +258,461 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-windows日志总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/" class="archive-article-date">
-        <time datetime="2022-11-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/">在PNG中注入PHP代码</a>
-	
+    <h1 class="article-title" itemprop="name">
+      Windows日志总结
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">bypass</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PNG</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-          
+<a href="/windows%E6%97%A5%E5%BF%97%E6%80%BB%E7%BB%93/" class="archive-article-date">
+        <time datetime="2021-08-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-04</time>
+</a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.7k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">14分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>本文首发于奇安信攻防社区：<a target="_blank" rel="noopener" href="https://forum.butian.net/share/355">https://forum.butian.net/share/355</a></p>
+<h2 id="windows日志总结"><a href="#windows日志总结" class="headerlink" title="windows日志总结"></a>windows日志总结</h2><h3 id="开启审核策略"><a href="#开启审核策略" class="headerlink" title="开启审核策略"></a>开启审核策略</h3><p>运行  <strong>secpol.msc</strong>  可以打开本地安全策略，依次点开本地策略-审核策略。可以看到windows默认情况是没有开启审核策略的，不开启策略的话，windows就不会记录某些事件，比如登录事件，进程创建事件等等。</p>
+<p>我们可以挨个手动修改审核策略的属性，将审核操作选上成功和失败。</p>
+<p><img src="https://img-blog.csdnimg.cn/72293d12dad7442b96d0014649e448bb.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-vht5WMqp-1654770131990)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422110029.png)]"></p>
+<p>当然有简单方法：将下面脚本另存为bat，然后管理员运行就可以打开全部策略了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">echo [version] &gt;1.inf </span><br><span class="line">echo signature=&quot;$CHICAGO$&quot; &gt;&gt;1.inf </span><br><span class="line">echo [Event Audit] &gt;&gt;1.inf </span><br><span class="line">echo AuditSystemEvents=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditObjectAccess=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditPrivilegeUse=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditPolicyChange=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditAccountManage=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditProcessTracking=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditDSAccess=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditAccountLogon=3 &gt;&gt;1.inf </span><br><span class="line">echo AuditLogonEvents=3 &gt;&gt;1.inf </span><br><span class="line">secedit /configure /db 1.sdb /cfg 1.inf /log 1.log /quiet </span><br><span class="line">del 1.*</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/62fd62aaaba64ce68ba69fce1d586b0b.png" alt="在这里插入图片描述"></p>
+<h3 id="Windows系统日志"><a href="#Windows系统日志" class="headerlink" title="Windows系统日志"></a>Windows系统日志</h3><h4 id="Windows系统日志简介"><a href="#Windows系统日志简介" class="headerlink" title="Windows系统日志简介"></a>Windows系统日志简介</h4><p>Windows操作系统在其运行的生命周期中会记录其大量的日志信息，这些日志信息包括：Windows事件日志（Event Log），Windows服务器系统的IIS日志，FTP日志，Exchange Server邮件服务，MS SQL Server数据库日志等。处理应急事件时，客户提出需要为其提供溯源，这些日志信息在取证和溯源中扮演着重要的角色。</p>
+<p>Windows事件日志文件实际上是以特定的数据结构的方式存储内容，其中包括有关系统，安全，应用程序的记录。每个记录事件的数据结构中包含了9个元素（可以理解成数据库中的字段）：日期&#x2F;时间、事件类型、用户、计算机、事件ID、来源、类别、描述、数据等信息。应急响应工程师可以根据日志取证，了解计算机上上发生的具体行为。</p>
+<p>Windows系统中自带了一个叫做事件查看器的工具，它可以用来查看分析所有的Windows系统日志。运行  <strong>eventvwr</strong>  可以快速打开事件查看器。使用该工具可以看到系统日志被分为了两大类：Windows日志和应用程序和服务日志。</p>
+<p>系统内置的三个核心日志文件（System，Security和Application）默认大小均为20480KB（20MB），记录事件数据超过20MB时，默认系统将优先覆盖过期的日志记录。其它应用程序及服务日志默认最大为1024KB，超过最大限制也优先覆盖过期的日志记录。</p>
+<h4 id="windows日志类型"><a href="#windows日志类型" class="headerlink" title="windows日志类型"></a>windows日志类型</h4><p><strong>系统日志</strong></p>
+<p> 系统日志包含 Windows 系统组件记录的事件。例如，在启动过程中加载驱动程序或其他系统组件失败将记录在系统日志中。系统组件所记录的事件类型由 Windows 预先确定。</p>
+<p> 默认位置：%SystemRoot%\System32\Winevt\Logs\System.evtx</p>
+<p><strong>应用程序日志</strong></p>
+<p> 应用程序日志包含由应用程序或程序记录的事件。例如，数据库程序可在应用程序日志中记录文件错误。程序开发人员决定记录哪些事件。</p>
+<p> 默认位置：%SystemRoot%\System32\Winevt\Logs\Application.evtx</p>
+<p><strong>安全日志</strong></p>
+<p> 安全日志包含诸如有效和无效的登录尝试等事件，以及与资源使用相关的事件，如创建、打开或删除文件或其他对象。管理员可以指定在安全日志中记录什么事件。例如，如果已启用登录审核，则对系统的登录尝试将记录在安全日志中。</p>
+<p> 默认位置：%SystemRoot%\System32\Winevt\Logs\Security.evtx</p>
+<h4 id="应用程序及服务日志"><a href="#应用程序及服务日志" class="headerlink" title="应用程序及服务日志"></a>应用程序及服务日志</h4><p><strong>Microsoft</strong></p>
+<p>Microsoft文件夹下包含了200多个微软内置的事件日志分类，只有部分类型默认启用记录功能，如远程桌面客户端连接、无线网络、有线网路、设备安装等相关日志。</p>
+<p> 默认位置：%SystemRoot%\System32\Winevt\Logs目录下Microsoft-Windows开头的文件名</p>
+<p><img src="https://img-blog.csdnimg.cn/8c1aafb7ad3e44999ba9890b8f675930.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-okrISuUM-1654770131990)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422111853.png)]"></p>
+<p> <strong>Microsoft Office Alerts</strong> </p>
+<p>微软Office应用程序（包括Word&#x2F;Excel&#x2F;PowerPoint等）的各种警告信息，其中包含用户对文档操作过程中出现的各种行为，记录有文件名、路径等信息。</p>
+<p>默认位置：%SystemRoot%\System32\Winevt\Logs\OAerts.evtx </p>
+<p> <strong>Windows PowerShell</strong></p>
+<p> Windows自带的PowerShell应用的日志信息。 </p>
+<p>默认位置：%SystemRoot%\System32\Winevt\Logs\Windows PowerShell.evtx </p>
+<p> <strong>Internet Explorer</strong> </p>
+<p> IE浏览器应用程序的日志信息，默认未启用，需要通过组策略进行配置。 </p>
+<p>默认位置：%SystemRoot%\System32\Winevt\Logs\Internet Explorer.evtx </p>
+<h4 id="windows事件类型-x2F-级别"><a href="#windows事件类型-x2F-级别" class="headerlink" title="windows事件类型&#x2F;级别"></a>windows事件类型&#x2F;级别</h4><p>Windows事件日志中共有五种事件类型，所有的事件必须拥有五种事件类型中的一种，且只可以有一种。五种事件类型分为：</p>
+<ol>
+<li><p>信息（Information）：信息事件指应用程序、驱动程序或服务的成功操作的事件。</p>
+</li>
+<li><p>警告（Warning）：警告事件指不是直接的、主要的，但是会导致将来问题发生的问题。例如，当磁盘空间不足或未找到打印机时，都会记录一个“警告”事件。</p>
+</li>
+<li><p>错误（Error）：错误事件指用户应该知道的重要的问题。错误事件通常指功能和数据的丢失。例如,如果一个服务不能作为系统引导被加载，那么它会产生一个错误事件。</p>
+</li>
+<li><p>成功审核（Success audit）：成功的审核安全访问尝试，主要是指安全性日志，这里记录着用户登录&#x2F;注销、对象访问、特权使用、账户管理、策略更改、详细跟踪、目录服务访问、账户登录等事件，例如所有的成功登录系统都会被记录为“ 成功审核”事件。</p>
+</li>
+<li><p>失败审核（Failure audit）：失败的审核安全登录尝试，例如用户试图访问网络驱动器失败，则该尝试会被作为失败审核事件记录下来。</p>
+</li>
+</ol>
+<h4 id="Windows事件属性"><a href="#Windows事件属性" class="headerlink" title="Windows事件属性"></a>Windows事件属性</h4><p>Windows事件日志属性如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">事件ID</td>
+<td align="left">标识特定事件类型的编号。描述的第一行通常包含事件类型的名称。例如，6005 是在启动事件日志服务时所发生事件的 ID。此类事件的描述的第一行是“事件日志服务已启动”。产品支持代表可以使用事件 ID 和来源来解决系统问题。</td>
+</tr>
+<tr>
+<td align="left">来源</td>
+<td align="left">记录事件的软件，可以是程序名（如“SQL Server”），也可以是系统或大型程序的组件（如驱动程序名）。例如，“Elnkii”表示 EtherLink II 驱动程序。</td>
+</tr>
+<tr>
+<td align="left">级别</td>
+<td align="left">事件严重性的分类，以下事件严重性级别可能出现在系统和应用程序日志中： <strong>信息：</strong>指明应用程序或组件发生了更改，如操作成功完成、已创建了资源，或已启动了服务。 <strong>警告：</strong>指明出现的问题可能会影响服务器或导致更严重的问题（如果未采取措施）。 <strong>错误：</strong>指明出现了问题，这可能会影响触发事件的应用程序或组件外部的功能。 <strong>关键：</strong>指明出现了故障，导致触发事件的应用程序或组件可能无法自动恢复。以下事件严重性级别可能出现在安全日志中： <strong>审核成功 ：</strong>指明用户权限练习成功。 <strong>审核失败：</strong>指明用户权限练习失败。在事件查看器的正常列表视图中，这些分类都由符号表示。</td>
+</tr>
+<tr>
+<td align="left">用户</td>
+<td align="left">事件发生所代表的用户的名称。如果事件实际上是由服务器进程所引起的，则此名称为客户端 ID；如果没有发生模仿的情况，则为主 ID。如果适用，安全日志项同时包含主 ID 和模仿 ID。当服务器允许一个进程采用另一个进程的安全属性时就会发生模拟的情况</td>
+</tr>
+<tr>
+<td align="left">操作代码</td>
+<td align="left">包含标识活动或应用程序引起事件时正在执行的活动中的点的数字值。例如，初始化或关闭</td>
+</tr>
+<tr>
+<td align="left">日志</td>
+<td align="left">已记录事件的日志的名称</td>
+</tr>
+<tr>
+<td align="left">任务类别</td>
+<td align="left">用于表示事件发行者的子组件或活动。</td>
+</tr>
+<tr>
+<td align="left">关键字</td>
+<td align="left">可用于筛选或搜索事件的一组类别或标记。示例包括“网络”、“安全”或“未找到资源”</td>
+</tr>
+<tr>
+<td align="left">计算机</td>
+<td align="left">发生事件的计算机的名称。该计算机名称通常为本地计算机的名称，但是它可能是已转发事件的计算机的名称，或者可能是名称更改之前的本地计算机的名称</td>
+</tr>
+<tr>
+<td align="left">日期和时间</td>
+<td align="left">记录事件的日期和时间</td>
+</tr>
+</tbody></table>
+<p>重点讲述<strong>事件ID</strong>值，Windows 的日志以事件 id 来标识具体发生的动作行为，可通过下列网站查询具体 id 对应的操作：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor">https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx?i=j">https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx?i=j</a></p>
+<h4 id="常用的事件id"><a href="#常用的事件id" class="headerlink" title="常用的事件id"></a>常用的事件id</h4><table>
+<thead>
+<tr>
+<th align="left">事件ID</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1102</td>
+<td align="left">清理审计日志</td>
+</tr>
+<tr>
+<td align="left">4624</td>
+<td align="left">账号登录成功</td>
+</tr>
+<tr>
+<td align="left">4625</td>
+<td align="left">账号登录失败</td>
+</tr>
+<tr>
+<td align="left">4634</td>
+<td align="left">账号注销成功</td>
+</tr>
+<tr>
+<td align="left">4647</td>
+<td align="left">用户启动的注销</td>
+</tr>
+<tr>
+<td align="left">4672</td>
+<td align="left">使用超级用户（如管理员）进行登录</td>
+</tr>
+<tr>
+<td align="left">4720</td>
+<td align="left">创建用户</td>
+</tr>
+<tr>
+<td align="left">4726</td>
+<td align="left">删除用户</td>
+</tr>
+<tr>
+<td align="left">4732</td>
+<td align="left">将成员添加到启用安全的本地组中</td>
+</tr>
+<tr>
+<td align="left">4733</td>
+<td align="left">将成员从启用安全的本地组中移除</td>
+</tr>
+<tr>
+<td align="left">4688</td>
+<td align="left">创建新进程</td>
+</tr>
+<tr>
+<td align="left">4689</td>
+<td align="left">结束进程</td>
+</tr>
+</tbody></table>
+<p>每个<strong>成功登录</strong>的事件都会标记一个登录类型，不同登录类型代表不同的方式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">登录类型</th>
+<th align="left">描述</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2</td>
+<td align="left">交互式登录（Interactive）</td>
+<td align="left">用户在本地进行登录。</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">网络（Network）</td>
+<td align="left">最常见的情况就是连接到共享文件夹或共享打印机时。</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">批处理（Batch）</td>
+<td align="left">通常表明某计划任务启动。</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">服务（Service）</td>
+<td align="left">每种服务都被配置在某个特定的用户账号下运行。</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">解锁（Unlock）</td>
+<td align="left">屏保解锁。</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">网络明文（NetworkCleartext）</td>
+<td align="left">登录的密码在网络上是通过明文传输的，如FTP。</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">新凭证（NewCredentials）</td>
+<td align="left">使用带&#x2F;Netonly参数的RUNAS命令运行一个程序。</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">远程交互，（RemoteInteractive）</td>
+<td align="left">通过终端服务、远程桌面或远程协助访问计算机。</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">缓存交互（CachedInteractive）</td>
+<td align="left">以一个域用户登录而又没有域控制器可用</td>
+</tr>
+</tbody></table>
+<h4 id="事件分析工具和命令"><a href="#事件分析工具和命令" class="headerlink" title="事件分析工具和命令"></a>事件分析工具和命令</h4><h5 id="Get-WinEvent"><a href="#Get-WinEvent" class="headerlink" title="Get-WinEvent"></a>Get-WinEvent</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">powershell管理员执行</span><br><span class="line">列出安全日志 Get-WinEvent -FilterHashtable @&#123;logname=&quot;Security&quot;;&#125;</span><br><span class="line">列出系统日志 Get-WinEvent -FilterHashtable @&#123;logname=&quot;System&quot;;&#125;</span><br><span class="line">列出应用程序日志 Get-WinEvent -FilterHashtable @&#123;logname=&quot;Application&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/90fd556abd4e4a9ea142e4e9baa2223f.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-kJfRn60U-1654770131990)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422133932.png)]"></p>
+<p><img src="https://img-blog.csdnimg.cn/2211a3abeb164d72a6959f3a6131b166.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-MMfZl8xk-1654770131991)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422134142.png)]"></p>
+<p><img src="https://img-blog.csdnimg.cn/89de1d58d922496bb2f2eefe7adb34e3.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-AZLZnrof-1654770131991)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422134242.png)]"></p>
+<h5 id="wevtutil"><a href="#wevtutil" class="headerlink" title="wevtutil"></a><strong>wevtutil</strong></h5><p>wevtutil 命令参数如下</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>意义</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>el</td>
+<td>enum-logs</td>
+<td>列出日志名称</td>
+</tr>
+<tr>
+<td>gl</td>
+<td>get-log</td>
+<td>获取日志配置信息</td>
+</tr>
+<tr>
+<td>sl</td>
+<td>set-log</td>
+<td>修改日志配置</td>
+</tr>
+<tr>
+<td>ep</td>
+<td>enum-publishers</td>
+<td>列出事件发布者</td>
+</tr>
+<tr>
+<td>gp</td>
+<td>get-publisher</td>
+<td>获取发布者配置信息</td>
+</tr>
+<tr>
+<td>im</td>
+<td>install-manifest</td>
+<td>从清单中安装事件发布者和日志</td>
+</tr>
+<tr>
+<td>um</td>
+<td>uninstall-manifest</td>
+<td>从清单中卸载事件发布者和日志</td>
+</tr>
+<tr>
+<td>qe</td>
+<td>query-events</td>
+<td>从日志或日志文件中查询事件</td>
+</tr>
+<tr>
+<td>gli</td>
+<td>get-log-info</td>
+<td>获取日志状态信息</td>
+</tr>
+<tr>
+<td>epl</td>
+<td>export-log</td>
+<td>导出日志</td>
+</tr>
+<tr>
+<td>al</td>
+<td>archive-log</td>
+<td>存档导出的日志</td>
+</tr>
+<tr>
+<td>cl</td>
+<td>clear-log</td>
+<td>清除日志</td>
+</tr>
+</tbody></table>
+<p>导出  安全 日志的命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wevtutil epl security d:\security.evtx</span><br><span class="line">该命令将安全日志信息导出到d盘下的security.evtx文件</span><br></pre></td></tr></table></figure>
+
+<p>查询  安全 日志的命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wevtutil qe Security /f:text /rd:true &gt; c:\1.txt    导出为文本</span><br><span class="line">wevtutil qe Security /f:xml /rd:true &gt; c:\1.xml     导出为xml格式</span><br><span class="line">wevtutil qe Application /c:3 /rd:true /f:text       以文本格式显示应用程序日志中三个最近的事件</span><br><span class="line"></span><br><span class="line">/f:&lt;Format&gt; 指定输出应为 XML 格式或文本格式。 如果 &lt;Format&gt; 为 xml，则输出以 xml 格式显示。 如果 &lt;Format&gt; 是文本，则显示不带 XML 标记的输出。 默认值为 Text。</span><br><span class="line">/rd:&lt;Direction&gt; 指定读取事件的方向。 &lt;Direction&gt; 可以为 true 或 false。 如果为 true，则首先返回最新的事件。</span><br><span class="line">/c&lt;Count&gt;	设置要读取的最大事件数。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/5d736ea3cf9c42c8bf5ea34116127525.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-y2uyS3uj-1654770131991)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422135321.png)]"></p>
+<p><img src="https://img-blog.csdnimg.cn/c9b1a519674e4c3d87ee62575073d10b.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-dmKSdwpe-1654770131992)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422135550.png)]"></p>
+<p>更多可以参考wevtutil微软官方文档说明：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/wevtutil">https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/wevtutil</a></p>
+<h5 id="logparser-需下载安装"><a href="#logparser-需下载安装" class="headerlink" title="logparser(需下载安装)"></a>logparser(需下载安装)</h5><p>logparser工具下载地址 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/confirmation.aspx?id=24659">https://www.microsoft.com/en-us/download/confirmation.aspx?id=24659</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">查询 系统日志 事件id为4688的事件 按事件倒序：</span><br><span class="line">LogParser.exe  -i:EVT &quot;SELECT TimeGenerated,EventID,EXTRACT_TOKEN(Strings,1,&#x27;|&#x27;)  as UserName,EXTRACT_TOKEN(Strings,5,&#x27;|&#x27;)  as ProcessName FROM Security where EventID=4688 ORDER BY TimeGenerated desc&quot;</span><br><span class="line">其中FROM Security 中的Security可以换成System和Application或 导出的日志、备份日志，例c:\11.evtx；事件id可以替换成其他id；当然也可以select *来查询所有列。</span><br><span class="line">EXTRACT_TOKEN(Strings,5,&#x27;|&#x27;)表示将String列按&#x27;|&#x27;隔开取第5个。类似编程语言中的split函数。</span><br><span class="line"></span><br><span class="line">查询系统日志，所有列，事件倒序</span><br><span class="line">LogParser.exe  -i:EVT &quot;SELECT * FROM System  ORDER BY TimeGenerated desc&quot;</span><br><span class="line"></span><br><span class="line">-o:csv 将日志另存为csv格式，其他常用格式tsv(文本格式)、xml</span><br><span class="line"></span><br><span class="line">LogParser.exe  -i:EVT &quot;SELECT TimeGenerated,EventID,EXTRACT_TOKEN(Strings,1,&#x27;|&#x27;)  as UserName,EXTRACT_TOKEN(Strings,5,&#x27;|&#x27;)  as ProcessName FROM Security ORDER BY TimeGenerated desc&quot; -o:tsv &gt; c:\1.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/9cf08c0afe1f464a88a0b1b571a1adf6.png" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-EWBEXfKL-1654770131992)(https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/20210422142206.png)]"></p>
+<p><img src="https://img-blog.csdnimg.cn/ab75f4eeb57140a4b7c0bcd1762f623e.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/949544a0889d4c3aabbb34ccb56c9170.png" alt="在这里插入图片描述"></p>
+<h3 id="日志清除（管理员权限）"><a href="#日志清除（管理员权限）" class="headerlink" title="日志清除（管理员权限）"></a>日志清除（管理员权限）</h3><p>清除日志之后会留下清除日志的审核事件。</p>
+<p><strong>手动删除：</strong></p>
+<p>开始-程序-管理工具-计算机管理-系统工具-事件查看器-清除日志</p>
+<p><strong>meterperter自带清除日志功能：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">清除windows中的应用程序日志、系统日志、安全日志 clearev     </span><br><span class="line">查看事件日志:  run event_manager -i</span><br><span class="line">清理事件日志: run event_manager -c</span><br></pre></td></tr></table></figure>
+
+<p><strong>wevtutil：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wevtutil el             列出系统中所有日志名称</span><br><span class="line">wevtutil cl system      清理系统日志</span><br><span class="line">wevtutil cl application 清理应用程序日志</span><br><span class="line">wevtutil cl security    清理安全日志</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/9d3e4079dd284ebaa7bd573e16a32456.png" alt="在这里插入图片描述"></p>
+<p><strong>Clear-Eventlog（powershell）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Clear-Eventlog -Log Application, System,Security</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/200e96eff6db4ddf876b7b70ebb85ae2.png" alt="在这里插入图片描述"></p>
+<p><strong>清除应用程序和服务日志</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FOR /F &quot;delims=&quot; %I IN (&#x27;WEVTUTIL EL&#x27;) DO (WEVTUTIL CL &quot;%I&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>前面所有命令都只是清除了windows日志，没有清除应用程序和服务日志，这个命令可以清除。</p>
+<p><img src="https://img-blog.csdnimg.cn/3f811affe3d34ab49a1089d519cf2ce9.png" alt="在这里插入图片描述"></p>
+<p>清除应用程序和服务日志：</p>
+<p><img src="https://img-blog.csdnimg.cn/4e660fc6d70048d5af92973769f8e1b3.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/2c45ce7976ac4b34a15db11a301ceb35.png" alt="在这里插入图片描述"></p>
+<p><strong>清除recent：</strong></p>
+<p>recent是windows下用户打开的文档历史文件记录 。         </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在文件资源管理器中点击“查看”-&gt;“选项”-&gt;在常规-&gt;隐私中点击”清除”按钮</span><br><span class="line">或直接打开C:\Users\用户名\Recent并删除所有内容</span><br><span class="line">或在命令行中输入del /f /s /q %userprofile%\Recent*.*</span><br></pre></td></tr></table></figure>
+
+<p>清除之前：</p>
+<p><img src="https://img-blog.csdnimg.cn/b5703343d6714528baacacebc1aa3ea1.png" alt="在这里插入图片描述"></p>
+<p>清除之后：</p>
+<p><img src="https://img-blog.csdnimg.cn/ce908d304f5145ffba8e8194ce36e5b8.png" alt="在这里插入图片描述"></p>
+<p>参考连接（站在巨人的肩膀上登高望远）：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor">https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor</a>	</p>
+<p><a target="_blank" rel="noopener" href="https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx?i=j">https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx?i=j</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/wevtutil">https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/wevtutil</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/175560.html">https://www.freebuf.com/vuls/175560.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/sah3GAVlOALP4hx7vk8eJA">https://mp.weixin.qq.com/s/sah3GAVlOALP4hx7vk8eJA</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/pzQxkl3Ngbapuso75LgnLQ">https://mp.weixin.qq.com/s/pzQxkl3Ngbapuso75LgnLQ</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Z_Z_W_/article/details/104406072">https://blog.csdn.net/Z_Z_W_/article/details/104406072</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Captain_RB/article/details/109573106">https://blog.csdn.net/Captain_RB/article/details/109573106</a></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          ordar
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://mrwq.github.io/windows日志总结/" title="Windows日志总结" target="_blank">https://mrwq.github.io/windows日志总结/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本文作者： ordar123 转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-08-30T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/">用友畅捷通T+未授权任意文件上传漏洞（0day）分析与复现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">0day</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞复现</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%B8%B8%E8%A7%81%E6%97%A0%E6%96%87%E4%BB%B6%E8%90%BD%E5%9C%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2022-08-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%B8%B8%E8%A7%81%E6%97%A0%E6%96%87%E4%BB%B6%E8%90%BD%E5%9C%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">常见无文件落地攻击方法总结</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -377,119 +722,135 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">无文件落地</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mrwq.github.io/windows%E6%97%A5%E5%BF%97%E6%80%BB%E7%BB%93/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-05-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-12</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/Linux%E6%97%A5%E5%BF%97%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux日志总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E4%BA%91%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E7%B1%BBSSRF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">云函数实现类SSRF</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">CVE-2022-26923域权限提升漏洞复现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞复现</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞利用</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E6%97%A5%E5%BF%97%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">windows日志总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E5%AE%A1%E6%A0%B8%E7%AD%96%E7%95%A5"><span class="toc-number">1.1.</span> <span class="toc-text">开启审核策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97"><span class="toc-number">1.2.</span> <span class="toc-text">Windows系统日志</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">Windows系统日志简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#windows%E6%97%A5%E5%BF%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">windows日志类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%97%A5%E5%BF%97"><span class="toc-number">1.2.3.</span> <span class="toc-text">应用程序及服务日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#windows%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B-x2F-%E7%BA%A7%E5%88%AB"><span class="toc-number">1.2.4.</span> <span class="toc-text">windows事件类型&#x2F;级别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows%E4%BA%8B%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.5.</span> <span class="toc-text">Windows事件属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%8B%E4%BB%B6id"><span class="toc-number">1.2.6.</span> <span class="toc-text">常用的事件id</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E5%92%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.7.</span> <span class="toc-text">事件分析工具和命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Get-WinEvent"><span class="toc-number">1.2.7.1.</span> <span class="toc-text">Get-WinEvent</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#wevtutil"><span class="toc-number">1.2.7.2.</span> <span class="toc-text">wevtutil</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#logparser-%E9%9C%80%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.7.3.</span> <span class="toc-text">logparser(需下载安装)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%B8%85%E9%99%A4%EF%BC%88%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">日志清除（管理员权限）</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/kerberos%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB/" class="archive-article-date">
-        <time datetime="2022-03-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/kerberos%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB/">kerberos中继攻击</a>
-	
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">kerberos</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中继</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
+
+
 
 
           </div>
@@ -530,8 +891,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

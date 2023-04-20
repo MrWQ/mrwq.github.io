@@ -6,19 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mrwq.github.io">
-  <title>Archives: 2022 | </title>
+  <title>bolt cms V3.7.0 xss和远程代码执行漏洞 | </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="description">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="https://mrwq.github.io/archives/2022/index.html">
+  <meta name="description" content="bolt cms V3.7.0 xss和远程代码执行漏洞1. 漏洞环境搭建github上下载对应版本，这里下载3.7.0. 1https:&#x2F;&#x2F;github.com&#x2F;bolt&#x2F;bolt&#x2F;releases  解压后需要重命名以下文件： 1234mv .bolt.yml.dist .bolt.ymlmv composer.json.dist composer.jsonmv composer.lock.d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bolt cms V3.7.0 xss和远程代码执行漏洞">
+<meta property="og:url" content="https://mrwq.github.io/bolt%20cms%20V3.7.0%20xss%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="description">
+<meta property="og:description" content="bolt cms V3.7.0 xss和远程代码执行漏洞1. 漏洞环境搭建github上下载对应版本，这里下载3.7.0. 1https:&#x2F;&#x2F;github.com&#x2F;bolt&#x2F;bolt&#x2F;releases  解压后需要重命名以下文件： 1234mv .bolt.yml.dist .bolt.ymlmv composer.json.dist composer.jsonmv composer.lock.d">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIwNDUucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIxMzMucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIxNDIucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIyMjYucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIyNDAucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIyNTIucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMDIucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMTUucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMjQucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMzIucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMzkucG5n?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2020-08-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-20T08:36:14.446Z">
 <meta property="article:author" content="ordar">
+<meta property="article:tag" content="漏洞复现">
+<meta property="article:tag" content="漏洞利用">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIwNDUucG5n?x-oss-process=image/format,png">
   
   
     <link rel="icon" href="/img/head.jpg">
@@ -235,186 +251,181 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-bolt cms V3.7.0 xss和远程代码执行漏洞" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/" class="archive-article-date">
-        <time datetime="2022-11-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%9C%A8PNG%E4%B8%AD%E6%B3%A8%E5%85%A5PHP%E4%BB%A3%E7%A0%81/">在PNG中注入PHP代码</a>
-	
+    <h1 class="article-title" itemprop="name">
+      bolt cms V3.7.0 xss和远程代码执行漏洞
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">bypass</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PNG</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-          
+<a href="/bolt%20cms%20V3.7.0%20xss%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="archive-article-date">
+        <time datetime="2020-08-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
+</a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="bolt-cms-V3-7-0-xss和远程代码执行漏洞"><a href="#bolt-cms-V3-7-0-xss和远程代码执行漏洞" class="headerlink" title="bolt cms V3.7.0 xss和远程代码执行漏洞"></a>bolt cms V3.7.0 xss和远程代码执行漏洞</h3><h4 id="1-漏洞环境搭建"><a href="#1-漏洞环境搭建" class="headerlink" title="1. 漏洞环境搭建"></a>1. 漏洞环境搭建</h4><p>github上下载对应版本，这里下载3.7.0.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/bolt/bolt/releases</span><br></pre></td></tr></table></figure>
+
+<p>解压后需要重命名以下文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv .bolt.yml.dist .bolt.yml</span><br><span class="line">mv composer.json.dist composer.json</span><br><span class="line">mv composer.lock.dist composer.lock</span><br><span class="line">mv src/Site/CustomisationExtension.php.dist src/Site/CustomisationExtension.php </span><br></pre></td></tr></table></figure>
+
+<p>为了快速搭建这里使用phpstudy，开启apache和mysql</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIwNDUucG5n?x-oss-process=image/format,png" alt="2.1"></p>
+<p>点击网站，创建站点，选择好php版本并创建数据库，记住域名、数据库名称、用户名和密码</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIxMzMucG5n?x-oss-process=image/format,png" alt="2.2"></p>
+<p>配置数据库app&#x2F;config&#x2F;config.yml。填好数据库名称、用户名和密码然后保存</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIxNDIucG5n?x-oss-process=image/format,png" alt="2.3"></p>
+<p>然后浏览器访问http:&#x2F;&#x2F;上面自己设置的域名&#x2F;public即可到安装页面，第一次需要设置管理员账号和密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://上面自己设置的域名/public    		</span><br><span class="line">http://上面自己设置的域名/public/bolt	# 管理地址</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIyMjYucG5n?x-oss-process=image/format,png" alt="2.4"></p>
+<h4 id="2-漏洞分析"><a href="#2-漏洞分析" class="headerlink" title="2.  漏洞分析"></a>2.  漏洞分析</h4><ol>
+<li>XSS成因分析</li>
+</ol>
+<p>该漏洞存在于vendor&#x2F;bolt&#x2F;bolt&#x2F;src&#x2F;Controller&#x2F;Backend&#x2F;Users.php。有两个变量$user和$userEntity用于存储和使用以显示此代码中的用户数据。$userEntity在传递给$form-&gt;isValid（），这表明$user有未编码的输入和$userEntity是具有编码的输入。也就是说使用$user未对用户输入编码，使用$userEntity可以对用户输入编码。</p>
+<p>下面代码使用$user-&gt;getDisplayName（）而不是$userEntity-&gt;getDisplayName（），显示未编码的用户输入，所以导致XSS。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">switch ($action) &#123;</span><br><span class="line">        case &#x27;disable&#x27;:</span><br><span class="line">            if ($this-&gt;users()-&gt;setEnabled($id, false)) &#123;</span><br><span class="line">                $this-&gt;app[&#x27;logger.system&#x27;]-&gt;info(&quot;Disabled user</span><br><span class="line">&#x27;&#123;$user-&gt;getDisplayname()&#125;&#x27;.&quot;, [&#x27;event&#x27; =&gt; &#x27;security&#x27;]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$this-&gt;flashes()-&gt;info(Trans::__(&#x27;general.phrase.user-disabled&#x27;, [&#x27;%s&#x27;</span><br><span class="line">=&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line"></span><br><span class="line">$this-&gt;flashes()-&gt;info(Trans::__(&#x27;general.phrase.user-failed-disabled&#x27;,</span><br><span class="line">[&#x27;%s&#x27; =&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line"></span><br><span class="line">        case &#x27;enable&#x27;:</span><br><span class="line">            if ($this-&gt;users()-&gt;setEnabled($id, true)) &#123;</span><br><span class="line">                $this-&gt;app[&#x27;logger.system&#x27;]-&gt;info(&quot;Enabled user</span><br><span class="line">&#x27;&#123;$user-&gt;getDisplayname()&#125;&#x27;.&quot;, [&#x27;event&#x27; =&gt; &#x27;security&#x27;]);</span><br><span class="line"></span><br><span class="line">$this-&gt;flashes()-&gt;info(Trans::__(&#x27;general.phrase.user-enabled&#x27;, [&#x27;%s&#x27;</span><br><span class="line">=&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line"></span><br><span class="line">$this-&gt;flashes()-&gt;info(Trans::__(&#x27;general.phrase.user-failed-enable&#x27;,</span><br><span class="line">[&#x27;%s&#x27; =&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line"></span><br><span class="line">        case &#x27;delete&#x27;:</span><br><span class="line">            if ($this-&gt;isCsrfTokenValid() &amp;&amp; $this-&gt;users()-&gt;deleteUser($id)) &#123;</span><br><span class="line">                $this-&gt;app[&#x27;logger.system&#x27;]-&gt;info(&quot;Deleted user</span><br><span class="line">&#x27;&#123;$user-&gt;getDisplayname()&#125;&#x27;.&quot;, [&#x27;event&#x27; =&gt; &#x27;security&#x27;]);</span><br><span class="line"></span><br><span class="line">$this-&gt;flashes()-&gt;info(Trans::__(&#x27;general.phrase.user-deleted&#x27;, [&#x27;%s&#x27;</span><br><span class="line">=&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line"></span><br><span class="line">$this-&gt;flashes()-&gt;info(Trans::__(&#x27;general.phrase.user-failed-delete&#x27;,</span><br><span class="line">[&#x27;%s&#x27; =&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line"></span><br><span class="line">        default:</span><br><span class="line">            $this-&gt;flashes()-&gt;error(Trans::__(&#x27;general.phrase.no-such-action-for-user&#x27;,</span><br><span class="line">[&#x27;%s&#x27; =&gt; $user-&gt;getDisplayname()]));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>远程代码执行成因分析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public function rename($path, $newPath)</span><br><span class="line">   &#123;</span><br><span class="line">       $path = $this-&gt;normalizePath($path);</span><br><span class="line">       $newPath = $this-&gt;normalizePath($newPath);</span><br><span class="line">       $this-&gt;assertPresent($path);</span><br><span class="line">       $this-&gt;assertAbsent($newPath);</span><br><span class="line">   </span><br><span class="line">       $this-&gt;doRename($path, $newPath);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>normalizePath（）函数在第823行acts的同一文件中定义作为Flysystem的normalizePath（）函数的包装器。已经习惯了</p>
+<p>获取文件的“真实”路径。这用于验证文件位置等等。例如，.&#x2F;somedir&#x2F;..&#x2F;text.txt &#x3D;&#x3D; .&#x2F;text.txt &#x3D;&#x3D; text.txt</p>
+<p>所以’.&#x2F;text.txt’ 传递给此函数，它返回 ‘text.txt’</p>
+<p>所以，从文件名 ‘backdoor.php&#x2F;.’ 将其传递给normalizePath（）它返回 ‘backdoor.php’ ,这正是我们所需要的。</p>
+<p>所以数据流看起来，首先是值’backdoor.php&#x2F;.’ 传递给validateFileExtension（）返回NULL，因为后面没有文本最后一个点。所以，extesion过滤器被绕过了。接下来，相同的值是传递给normalizePath（），它删除最后一个“&#x2F;.”，因为它看起来像它是指向当前目录的路径。最后，文件被重命名为’backdoor.php’</p>
+</li>
+</ol>
+<h4 id="3-漏洞测试"><a href="#3-漏洞测试" class="headerlink" title="3. 漏洞测试"></a>3. 漏洞测试</h4><h5 id="1-xss"><a href="#1-xss" class="headerlink" title="1. xss"></a>1. xss</h5><p>构造payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /preview/page HTTP/1.1</span><br><span class="line">Host: localhost</span><br><span class="line">    contenttype=pages&amp;title=title&amp;slug=testpage1&amp;teaser=teaser1&amp;body=&lt;script&gt;alert(1)&lt;/script&gt;&amp;id=151</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIyNDAucG5n?x-oss-process=image/format,png" alt="2.5"></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIyNTIucG5n?x-oss-process=image/format,png" alt="2.6"></p>
+<h5 id="2-远程代码执行"><a href="#2-远程代码执行" class="headerlink" title="2. 远程代码执行"></a>2. 远程代码执行</h5><p>创建一个文件，然后编辑这个文件，写入木马保存。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMDIucG5n?x-oss-process=image/format,png" alt="2.7"></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMTUucG5n?x-oss-process=image/format,png" alt="2.8"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后将shell.html重命名危shell.html.php\.</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMjQucG5n?x-oss-process=image/format,png" alt="2.9"></p>
+<p>即可变成shell.html.php</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMzIucG5n?x-oss-process=image/format,png" alt="2.10"></p>
+<p>访问该文件即可执行命令</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMzkucG5n?x-oss-process=image/format,png" alt="2.11"></p>
+<h4 id="4-影响版本"><a href="#4-影响版本" class="headerlink" title="4. 影响版本"></a>4. 影响版本</h4><p>Bolt CMS&lt;&#x3D; 3.7.0</p>
+<h4 id="5-防御方案"><a href="#5-防御方案" class="headerlink" title="5. 防御方案"></a>5. 防御方案</h4><pre><code>     1. XSS
+
+        使用具有编码值的变量来显示用户信息。使用$userEntity而不是$user
+
+     2. RCE
+
+        重命名时更改数据流。先把数据传过来normalizePath（）数据，然后通过validateFileExtension（）。这样，验证函数验证最终值。
+</code></pre>
+<h4 id="6-漏洞细节参考"><a href="#6-漏洞细节参考" class="headerlink" title="6. 漏洞细节参考"></a>6. 漏洞细节参考</h4><p><a target="_blank" rel="noopener" href="https://seclists.org/fulldisclosure/2020/Jul/4">https://seclists.org/fulldisclosure/2020/Jul/4</a></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          ordar
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://mrwq.github.io/bolt cms V3.7.0 xss和远程代码执行漏洞/" title="bolt cms V3.7.0 xss和远程代码执行漏洞" target="_blank">https://mrwq.github.io/bolt cms V3.7.0 xss和远程代码执行漏洞/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本文作者： ordar123 转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-08-30T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E7%94%A8%E5%8F%8B%E7%95%85%E6%8D%B7%E9%80%9AT+%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%EF%BC%880day%EF%BC%89%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/">用友畅捷通T+未授权任意文件上传漏洞（0day）分析与复现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">0day</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞复现</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/%E5%B8%B8%E8%A7%81%E6%97%A0%E6%96%87%E4%BB%B6%E8%90%BD%E5%9C%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2022-08-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/%E5%B8%B8%E8%A7%81%E6%97%A0%E6%96%87%E4%BB%B6%E8%90%BD%E5%9C%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">常见无文件落地攻击方法总结</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">总结</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">无文件落地</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-05-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/CVE-2022-26923%E5%9F%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">CVE-2022-26923域权限提升漏洞复现</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -430,66 +441,124 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://mrwq.github.io/bolt%20cms%20V3.7.0%20xss%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/kerberos%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB/" class="archive-article-date">
-        <time datetime="2022-03-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/Monstra%20CMS%203.0.4%20-%20Authenticated%20Arbitrary%20File%20Upload/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Monstra CMS 3.0.4-任意文件上传漏洞
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/kerberos%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB/">kerberos中继攻击</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">kerberos</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">中继</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#bolt-cms-V3-7-0-xss%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">bolt cms V3.7.0 xss和远程代码执行漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">1. 漏洞环境搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">2.  漏洞分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95"><span class="toc-number">1.3.</span> <span class="toc-text">3. 漏洞测试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-xss"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. xss</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 远程代码执行</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="toc-number">1.4.</span> <span class="toc-text">4. 影响版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E9%98%B2%E5%BE%A1%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">5. 防御方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%BC%8F%E6%B4%9E%E7%BB%86%E8%8A%82%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text">6. 漏洞细节参考</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+        
+    </div>
+</aside>
 
-    
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -530,8 +599,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
