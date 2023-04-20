@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/dd26677b97c9bf9affa52524bb250115.png#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/08374247877f6da5b136e3293c016acb.png#pic_center">
 <meta property="article:published_time" content="2021-03-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-20T08:36:14.226Z">
+<meta property="article:modified_time" content="2023-04-20T09:02:04.120Z">
 <meta property="article:author" content="ordar">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="免杀">
@@ -282,7 +282,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">924字</span>
+      <span class="post-count">923字</span>
     </span>
   </span>
 
@@ -309,11 +309,8 @@
 <li>同时在每行之间插入无效指令：比如随机打印，循环打印，随机数计算加减乘除</li>
 </ol>
 <p>这个思路的主要作用是加载器伪装。不管shellcode如果变化加密解密，最后都要回到这个模板里面加载。就算是采用分离免杀的方法，shellcode本身不会被杀，但是这个加载器会被杀，所以经过这样伪装之后加载器可以存活，为后面各种花里胡哨的的免杀奠定基础。</p>
-<br>
-source.py是模板
-<br>
-shellcode.py是本程序生成的加载器,可以使用pyinstaller直接构建成exe
-
+<span id="more"></span>
+<p>source.py是模板<br><br><br>shellcode.py是本程序生成的加载器,可以使用pyinstaller直接构建成exe</p>
 <h3 id="实践过程"><a href="#实践过程" class="headerlink" title="实践过程"></a>实践过程</h3><ol>
 <li>这是从网上找来的python加载shellcode的代码，只要搜索谁都能找得到。把它作为模板进行伪装。</li>
 </ol>

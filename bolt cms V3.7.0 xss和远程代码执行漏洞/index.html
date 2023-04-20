@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="bolt cms V3.7.0 xss和远程代码执行漏洞1. 漏洞环境搭建github上下载对应版本，这里下载3.7.0. 1https:&#x2F;&#x2F;github.com&#x2F;bolt&#x2F;bolt&#x2F;releases  解压后需要重命名以下文件： 1234mv .bolt.yml.dist .bolt.ymlmv composer.json.dist composer.jsonmv composer.lock.d">
+  <meta name="description" content="bolt cms V3.7.0 xss和远程代码执行漏洞1. 漏洞环境搭建github上下载对应版本，这里下载3.7.0. 1https:&#x2F;&#x2F;github.com&#x2F;bolt&#x2F;bolt&#x2F;releases">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bolt cms V3.7.0 xss和远程代码执行漏洞">
 <meta property="og:url" content="https://mrwq.github.io/bolt%20cms%20V3.7.0%20xss%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="bolt cms V3.7.0 xss和远程代码执行漏洞1. 漏洞环境搭建github上下载对应版本，这里下载3.7.0. 1https:&#x2F;&#x2F;github.com&#x2F;bolt&#x2F;bolt&#x2F;releases  解压后需要重命名以下文件： 1234mv .bolt.yml.dist .bolt.ymlmv composer.json.dist composer.jsonmv composer.lock.d">
+<meta property="og:description" content="bolt cms V3.7.0 xss和远程代码执行漏洞1. 漏洞环境搭建github上下载对应版本，这里下载3.7.0. 1https:&#x2F;&#x2F;github.com&#x2F;bolt&#x2F;bolt&#x2F;releases">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIwNDUucG5n?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIxMzMucG5n?x-oss-process=image/format,png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMzIucG5n?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL01yV1EvdnVsbmVyYWJpbGl0eS10ZXN0LWltZy9pbWcvMjAyMDA4MzAxMjIzMzkucG5n?x-oss-process=image/format,png">
 <meta property="article:published_time" content="2020-08-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-20T08:36:14.446Z">
+<meta property="article:modified_time" content="2023-04-20T09:02:02.370Z">
 <meta property="article:author" content="ordar">
 <meta property="article:tag" content="漏洞复现">
 <meta property="article:tag" content="漏洞利用">
@@ -306,6 +306,10 @@
     
     <h3 id="bolt-cms-V3-7-0-xss和远程代码执行漏洞"><a href="#bolt-cms-V3-7-0-xss和远程代码执行漏洞" class="headerlink" title="bolt cms V3.7.0 xss和远程代码执行漏洞"></a>bolt cms V3.7.0 xss和远程代码执行漏洞</h3><h4 id="1-漏洞环境搭建"><a href="#1-漏洞环境搭建" class="headerlink" title="1. 漏洞环境搭建"></a>1. 漏洞环境搭建</h4><p>github上下载对应版本，这里下载3.7.0.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/bolt/bolt/releases</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+
 
 <p>解压后需要重命名以下文件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv .bolt.yml.dist .bolt.yml</span><br><span class="line">mv composer.json.dist composer.json</span><br><span class="line">mv composer.lock.dist composer.lock</span><br><span class="line">mv src/Site/CustomisationExtension.php.dist src/Site/CustomisationExtension.php </span><br></pre></td></tr></table></figure>
