@@ -17,25 +17,25 @@
 <meta property="og:site_name">
 <meta property="og:description" content="本文首发于奇安信攻防社区：https:&#x2F;&#x2F;forum.butian.net&#x2F;share&#x2F;471第一次尝试自己审计代码，小白一个。审计了好长时间，终于皇天不负有心人，找到一处模板注入，最终发现一处代码执行。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/c8ee42df1e9d4e57b270db7b2d102a89.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/6d4ea5b796954332a2ab0ba34fc192f7.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/537e4b734def414a902eeaf2a45ded5c.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/61e7e19004ac4093a94eea13d4ba4c6a.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/9f650b2170d74cdaa3fc360db7b4b720.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/b49b28ffeb504ffcb83f9248472357f1.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/c7da2fb9356547c3b583044e73ca872d.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/c7a156fa5e144c4cb3d452a9545a09d2.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/ac0561e07a1340e6beeb5767caa9deee.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/4b5df9ba01264d369c58b60d47c20993.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/8c95364eab5940e181c849dc1a2100de.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/979579da95bd441b944e1aa386e1ba54.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2b029cbb3aab40d2b6d5a05f6f2918e5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748303.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748304.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748305.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748306.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748307.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748308.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748309.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748310.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748311.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748312.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748313.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748314.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748315.png">
 <meta property="article:published_time" content="2021-08-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-20T09:01:57.989Z">
+<meta property="article:modified_time" content="2023-04-20T10:04:40.298Z">
 <meta property="article:author" content="ordar">
 <meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/c8ee42df1e9d4e57b270db7b2d102a89.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748303.png">
   
   
     <link rel="icon" href="/img/head.jpg">
@@ -310,34 +310,34 @@
 
 <p>审计过程：</p>
 <p>采用关键函数溯源法来找的。全局搜索eval函数在e&#x2F;class&#x2F;connect.php</p>
-<p><img src="https://img-blog.csdnimg.cn/c8ee42df1e9d4e57b270db7b2d102a89.png" alt="image-20200903120718779"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748303.png" alt="image-20200903120718779"></p>
 <p>代码如图所示，能否利用这个eval函数，关键点在于$listtemp和$docode</p>
 <p>然后全局搜索ReplaceListVars函数，找的使用这个函数的功能点，在e&#x2F;search&#x2F;result&#x2F;index.php中发现使用了这个函数。如图</p>
-<p><img src="https://img-blog.csdnimg.cn/6d4ea5b796954332a2ab0ba34fc192f7.png" alt="image-20200903122632364"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748304.png" alt="image-20200903122632364"></p>
 <p>从这里开始再进行回溯，查看参数是否可控。可以看到$listvar和$docode都是从$tempr中得到的，所以回溯$tempr</p>
 <p>可以看到$tempr是从数据库中查询得到的，执行哪条查询语句关键在于$search_r[‘tempid’]</p>
-<p><img src="https://img-blog.csdnimg.cn/537e4b734def414a902eeaf2a45ded5c.png" alt="image-20200903123008456"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748305.png" alt="image-20200903123008456"></p>
 <p>再回溯$search_r，可以看到$search_r是从数据库查询到的。</p>
-<p><img src="https://img-blog.csdnimg.cn/61e7e19004ac4093a94eea13d4ba4c6a.png" alt="image-20200903123226779"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748306.png" alt="image-20200903123226779"></p>
 <p>我们连接数据库执行查询，看看这个sql的执行结果。</p>
-<p><img src="https://img-blog.csdnimg.cn/9f650b2170d74cdaa3fc360db7b4b720.png" alt="image-20200903123652096"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748307.png" alt="image-20200903123652096"></p>
 <p>可以看到tempid为1。所以$tempr是执行第一条sql语句查询出来的。这里再执行第一条sql看看</p>
-<p><img src="https://img-blog.csdnimg.cn/b49b28ffeb504ffcb83f9248472357f1.png" alt="image-20200903123953139"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748308.png" alt="image-20200903123953139"></p>
 <p>如图，listvar就是可以放到eval中执行的字符串，而modid就是控制能否执行eval的$docode。将过程反过来看就是漏洞成因。</p>
 <p>而要利用这个漏洞还差一个条件，就是参数可控。所以接下来要找可以插入数据在这里的函数。</p>
 <p>全局搜索第一条sql的数据库关键字，在ListSearchtemp.php中发现insert，可以确定这里是新增的地方。</p>
-<p><img src="https://img-blog.csdnimg.cn/c7da2fb9356547c3b583044e73ca872d.png" alt="image-20200903125140913"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748309.png" alt="image-20200903125140913"></p>
 <p>在web中找到该页面。可以看到这里显示的模板名称跟之前用sql查询的名字一样，所以可以确定这里就是新增的地方。从页面功能可以看出可以新增和修改，所以eval函数的参数可控。</p>
-<p><img src="https://img-blog.csdnimg.cn/c7a156fa5e144c4cb3d452a9545a09d2.png" alt="image-20200903125657667"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748310.png" alt="image-20200903125657667"></p>
 <p>漏洞利用：</p>
-<p><img src="https://img-blog.csdnimg.cn/ac0561e07a1340e6beeb5767caa9deee.png" alt="image-20200903130043103"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748311.png" alt="image-20200903130043103"></p>
 <p>修改类别内容为phpinfo，同时勾选上使用程序代码。</p>
 <p>然后从首页底部的搜索功能，到&#x2F;e&#x2F;search&#x2F;result&#x2F;index.php</p>
-<p><img src="https://img-blog.csdnimg.cn/4b5df9ba01264d369c58b60d47c20993.png" alt="image-20200903130322867"></p>
-<p><img src="https://img-blog.csdnimg.cn/8c95364eab5940e181c849dc1a2100de.png" alt="image-20200903130408019"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748312.png" alt="image-20200903130322867"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748313.png" alt="image-20200903130408019"></p>
 <p>用file_put_contents函数写入一句话木马payload，然后连接蚁剑：</p>
-<p>file_put_contents(‘test1.php’,’<?php eval($_POST[cmd]);?>‘);<br><img src="https://img-blog.csdnimg.cn/979579da95bd441b944e1aa386e1ba54.png" alt="image-20200903142710122"></p>
-<p><img src="https://img-blog.csdnimg.cn/2b029cbb3aab40d2b6d5a05f6f2918e5.png" alt="image-20200903142445589"></p>
+<p>file_put_contents(‘test1.php’,’<?php eval($_POST[cmd]);?>‘);<br><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748314.png" alt="image-20200903142710122"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202304201748315.png" alt="image-20200903142445589"></p>
 
     
 
