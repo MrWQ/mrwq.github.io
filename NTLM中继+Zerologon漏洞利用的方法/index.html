@@ -6,45 +6,45 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://mrwq.github.io">
-  <title>AMSI绕过原理与实践 | </title>
+  <title>NTLM中继+Zerologon漏洞利用的方法 | </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="首发蛇矛实验室：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;TAuKYcMU9Kgfc0cp8RwO0A 无需重置计算机帐户即可利用 Zerologon 的方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AMSI绕过原理与实践">
+<meta property="og:title" content="NTLM中继+Zerologon漏洞利用的方法">
 <meta property="og:url" content="https://mrwq.github.io/NTLM%E4%B8%AD%E7%BB%A7+Zerologon%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="首发蛇矛实验室：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;TAuKYcMU9Kgfc0cp8RwO0A 无需重置计算机帐户即可利用 Zerologon 的方法">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon1.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon2.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon3.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon4.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon5.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon6.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon7.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon8.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon9.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon10.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon11.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon12.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon13.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon14.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon15.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon16.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon17.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon18.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon19.png">
-<meta property="og:image" content="https://mrwq.github.io/assets/zerologon20.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722471.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722472.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722473.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722474.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722475.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722476.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722477.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722478.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722479.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722480.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722481.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722482.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722483.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722484.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722485.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722486.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722487.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722488.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722489.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722490.png">
 <meta property="article:published_time" content="2024-07-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-12T09:23:48.852Z">
+<meta property="article:modified_time" content="2024-07-12T09:26:50.161Z">
 <meta property="article:author" content="ordar">
 <meta property="article:tag" content="NTLM">
 <meta property="article:tag" content="ZeroLogon">
 <meta property="article:tag" content="CVE">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mrwq.github.io/assets/zerologon1.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722471.png">
   
   
     <link rel="icon" href="/img/head.jpg">
@@ -268,7 +268,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      AMSI绕过原理与实践
+      NTLM中继+Zerologon漏洞利用的方法
     </h1>
   
 
@@ -327,8 +327,8 @@
 <li>客户端和认证服务器，同时使用密钥派生函数（KDF全称Key derivation function）将两个挑战与共享秘密（NTLM）混合来计算出SessionKey。SessionKey&#x3D;KDF（NTLM，client challenge+server challenge），如果客户端和认证服务器使用的NTLM相同的话，客户端和认证服务器就拥有同一个SessionKey了，这一步是认证的基础。</li>
 <li>客户端使用SessionKey和客户端挑战使用AES-CFB8算法加密后结果A1发给服务端，然后认证服务器内部使用同样的算法AES-CFB8算法生成A2，如果A1等于A2，那么认证服务器就知道客户端是知道NTLM的，然后客户端在服务器这里就认证通过了。同理，认证服务器使用SessionKey和服务端挑战加密后结果B1发给客户端，客户端内部使用同样的方法生成B2，如果B1等于B2，那么客户端就知道了服务端是知道NTLM的。到这里认证过程就结束了，双方互相认证了对方的身份；同时协商出来了一个加密密钥SessionKey，这样客户端和认证服务器后续的所有消息都使用SessionKey来加密，然后SessionKey来解密对方的消息。</li>
 </ol>
-<p>这个过程直接引用网上的图片如下：</p>
-<p><img src="/assets/zerologon1.png" alt="img"></p>
+<p>这个过程如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722471.png" alt="img"></p>
 <h2 id="ZeroLogon-CVE-2020-1472-漏洞原理与风险"><a href="#ZeroLogon-CVE-2020-1472-漏洞原理与风险" class="headerlink" title="ZeroLogon(CVE-2020-1472) 漏洞原理与风险"></a>ZeroLogon(CVE-2020-1472) 漏洞原理与风险</h2><p>该漏洞存在一个加密缺陷，其中对于每256个随机生成的密钥中的1个，对由所有0组成的纯文本进行加密将导致也包含所有0的密文。简单来说就是通过将Client challenge置为0的方式来碰撞密文client credential为0的情况，不断重复这个过程直至服务器那端计算出来的密文hash也全是0，从而可以绕过认证过程。详情可以查看ZeroLogon(CVE-2020-1472) 分析与狩猎（<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8367%EF%BC%89%E3%80%82">https://xz.aliyun.com/t/8367）。</a></p>
 <p>Netlogon协议在Active Directory中主要由工作站和服务器使用，以通过安全通道与域控制器进行通信。因为加入Active Directory的每个工作站或服务器都有一个计算机帐户，Active Directory知道该帐户的密码。Active Directory拥有多个从同一密码派生的密钥，这些密钥可用于Kerberos和NTLM等身份验证协议。</p>
 <p>最初的Zerologon攻击的工作原理是将域中域控制器的Active Directory帐户的密码重置为空字符串。这允许攻击者以该域控制器的身份向另一个域控制器甚至同一域控制器进行身份验证。能够以域控制器身份进行身份验证是一项高权限，因为域控制器可以使用DRSUAPI协议同步Active Directory数据，包括NT哈希和Kerberos密钥。反过来，这些密钥可用于模拟域中的任何用户，或创建伪造的 Kerberos 票证。</p>
@@ -340,9 +340,9 @@
 <li>验证：验证主要是在质询完成后，验证结果，是认证的最后一步。</li>
 </ul>
 <p>NTLM协议的认证过程如下图所示：</p>
-<p><img src="/assets/zerologon2.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722472.png" alt="img"></p>
 <p>应用服务器在收到用户客户端的认证信息后，由于本身没有存储用户的NT哈希，所以必须依赖域服务器进行认证，将收到的认证信息发送给域服务器，这个过程基于NETLOGON协议。服务器使用 Netlogon RPC 协议将身份验证消息发送到域控制器，该协议将此会话密钥（SessionKey）返回给服务器。如下图所示。</p>
-<p>   <img src="/assets/zerologon3.png" alt="img"></p>
+<p>   <img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722473.png" alt="img"></p>
 <p>NTLM中继攻击（NTLM Relay）本质上是中间人的利用手法：欺骗客户端向自己发起认证，自己再将完整认证过程转发给服务端，达到绕过挑战响应认证直接获取服务端权限的目的。</p>
 <ol>
 <li><p>攻击者让客户端向攻击者服务器发起 NTLM 请求</p>
@@ -357,7 +357,7 @@
 </li>
 </ol>
 <p>如下图所示：</p>
-<p><img src="/assets/zerologon4.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722474.png" alt="img"></p>
 <p>由此可以得知，如果攻击者控制了任何一台域内主机（域内主机均具有自身主机账号的口令NTLM值），只要能获取此前客户端请求用户发送给应用服务器的认证信息，攻击者就可以向域服务器发起NETLOGON会话，从而获取SessionKey，随后可以发起重放攻击。</p>
 <h2 id="什么是DCSync"><a href="#什么是DCSync" class="headerlink" title="什么是DCSync"></a>什么是DCSync</h2><p>不同域控制器（DC）之间，每15分钟都会有一次域数据的同步。当一个域控制器（DC1）想从其他域控制器（DC2）获取数据时，DC1会向DC2发起一个GetNCChanges请求，该请求的数据包括需要同步的数据。如果需要同步的数据比较多，则会重复上述过程。DCSync就是利用的这个原理，通过DirectoryReplicationService（DRS）服务的GetNCChanges接口向域控发起数据同步请求。</p>
 <p>在默认情况下，只有Administrators、Domain Controllers和Enterprise Domain Admins组内的用户有权限使用DCSync。</p>
@@ -375,7 +375,7 @@
 <li>域中至少应有2个DC，因为中继回同一DC不起作用</li>
 </ul>
 <p>最终流程如下图所示：</p>
-<p><img src="/assets/zerologon5.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722475.png" alt="img"></p>
 <h2 id="攻击实践"><a href="#攻击实践" class="headerlink" title="攻击实践"></a>攻击实践</h2><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><table>
 <thead>
 <tr>
@@ -410,41 +410,41 @@
 <td></td>
 </tr>
 </tbody></table>
-<p><img src="/assets/zerologon6.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722476.png" alt="img"></p>
 <h3 id="Zerologon漏洞"><a href="#Zerologon漏洞" class="headerlink" title="Zerologon漏洞"></a>Zerologon漏洞</h3><h4 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><p>这里使用poc直接验证，如下图所示，证明DC1存在zerologon漏洞，并且成功dump出域控hash。</p>
-<p><img src="/assets/zerologon7.png" alt="image-20240710091216740"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722477.png" alt="image-20240710091216740"></p>
 <h3 id="NTLM中继-Zerologon-1"><a href="#NTLM中继-Zerologon-1" class="headerlink" title="NTLM中继+Zerologon"></a>NTLM中继+Zerologon</h3><h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><p>接下来恢复快照，恢复DC到zerologon利用之前的快照。</p>
 <p>然后搭建DC2</p>
 <p>1.先设置DNS为DC的ip</p>
-<p><img src="/assets/zerologon8.png" alt="image-20240710091725609"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722478.png" alt="image-20240710091725609"></p>
 <p>2.加入域rangenet.cn，同时将计算机名改成dc2。</p>
-<p><img src="/assets/zerologon9.png" alt="image-20240710092013043"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722479.png" alt="image-20240710092013043"></p>
 <p>3.重启之后搭建域环境</p>
 <p>选择Active Directory 域服务，然后将此服务器提升为域控制器。这个过程相比大家都比较熟，这里就简化步骤了，只截图关键部分。</p>
-<p><img src="/assets/zerologon10.png" alt="image-20240710092200860"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722480.png" alt="image-20240710092200860"></p>
 <p>选择将域控制器添加到现有域，然后更改操作所需凭据，凭据为主域控DC的账号密码。后面都是下一步就完了，之后会重启，重启之后输入的是主域控DC的账号密码。</p>
-<p><img src="/assets/zerologon11.png" alt="image-20240710092529474"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722481.png" alt="image-20240710092529474"></p>
 <p>这样在同一个域(rangenet.cn)中就会有两个域控，接下来将两个域控互相设为备份。</p>
 <p>4.互相设置DNS名称服务器</p>
 <p>进入主域控DC，然后打开DNS管理器。在正向查找区域中找到rangenet.cn，然后右键选择属性，选择名称服务器选项卡，然后添加新的名称服务器。</p>
-<p><img src="/assets/zerologon12.png" alt="image-20240710093344438"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722482.png" alt="image-20240710093344438"></p>
 <p>然后将备域控DC2的域名和ip填进去。</p>
 <p>进入DC2，做同样的操作，将DC的名称服务器添加进去。</p>
 <p>这样主域控DC和备域控DC2就互相冗余了。</p>
-<p><img src="/assets/zerologon13.png" alt="image-20240710093554668"></p>
-<p><img src="/assets/zerologon14.png" alt="image-20240710093725301"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722483.png" alt="image-20240710093554668"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722484.png" alt="image-20240710093725301"></p>
 <h4 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><p>因为DC和DC2互为主备，所以随便选一个进入，然后创建一个普通域用户user。这个普通域用户user是用于win10域成员登录的。</p>
 <p>假设我们事先拿下了win10域成员，然后在win10上拿到了rangenet&#x2F;user的账号密码。</p>
-<p><img src="/assets/zerologon15.png" alt="image-20240710094602265"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722485.png" alt="image-20240710094602265"></p>
 <p>1.在kali上开启NTLM中继，中继目标是主域控DC，中继成功之后直接执行DCSYNC来dump域控凭据。脚本会同时开启SMB、HTTP、WCF、WAW服务用来执行NTLM中继。</p>
-<p><img src="/assets/zerologon16.png" alt="image-20240710094126694"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722486.png" alt="image-20240710094126694"></p>
 <p>2.在使用printbug攻击DC2，使DC2强制使用NTLM登录kali，这样kali就能通过NTLM中继拿到sessionkey。</p>
-<p><img src="/assets/zerologon17.png" alt="image-20240710095148824"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722487.png" alt="image-20240710095148824"></p>
 <p>3.通过NTLM中继+zerologon漏洞组合利用，模拟DC2$机器账户的身份，使用zerologon绕过NETLOGON协议认证，然后使用窃取到session key，再调用DRSUAPI执行DCSYNC操作，以DC2$的身份向DC请求同步凭据，然后域内凭据就被dump出来了。</p>
-<p><img src="/assets/zerologon18.png" alt="image-20240710100215631"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722488.png" alt="image-20240710100215631"></p>
 <p>之后凭据可以用来登录任意域控或域成员。</p>
-<p><img src="/assets/zerologon19.png" alt="image-20240710100817805"></p>
-<p><img src="/assets/zerologon20.png" alt="image-20240710100828535"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722489.png" alt="image-20240710100817805"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MrWQ/vulnerability-test-img/img/202407121722490.png" alt="image-20240710100828535"></p>
 <p>总结：这是一种无须重置域控密码即可使用zerologon漏洞攻击域控或提权的方法，但是利用条件又比直接zerologon漏洞攻击多出了许多。利用条件需要双域控同时需要一个域成员账号密码，但是没有重置密码的风险。</p>
 <p>zerologon漏洞只需要域控主机名和ip即可利用，利用条件简单，但是一旦将域控密码置空就会造成域控脱域。因为在Active Directory中重置域控制器计算机帐户密码为空的那一刻，DC 处于不一致状态。因为存储在注册表和内存<code>lsass.exe</code>中的加密计算机帐户密码不会更改，但是Active Directory中同一帐户的密码现在已更改，这将影响从此域控制器到此域控制器的身份验证。如果重新启动域控制器，则各种服务将不再启动，因为它们想要从Active Directory读取信息。</p>
 
@@ -493,7 +493,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://mrwq.github.io/NTLM中继+Zerologon漏洞利用的方法/" title="AMSI绕过原理与实践" target="_blank">https://mrwq.github.io/NTLM中继+Zerologon漏洞利用的方法/</a>
+          <a href="https://mrwq.github.io/NTLM中继+Zerologon漏洞利用的方法/" title="NTLM中继+Zerologon漏洞利用的方法" target="_blank">https://mrwq.github.io/NTLM中继+Zerologon漏洞利用的方法/</a>
         </li>
         
         <li>
@@ -770,6 +770,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">NTLM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ZeroLogon</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CVE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">kerberos</a>
               </li>
              
@@ -807,18 +819,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">0day</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">NTLM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZeroLogon</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CVE</a>
               </li>
             
             <div class="clearfix"></div>
